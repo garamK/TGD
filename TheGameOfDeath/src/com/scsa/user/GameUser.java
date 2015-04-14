@@ -9,7 +9,6 @@ public class GameUser {
 	private String pass;
 	private int play;
 	private String image;
-
 	
 	public GameUser(int userNum, String userId, String nick, String pass,
 			int play, String image) {
@@ -26,7 +25,18 @@ public class GameUser {
 		super();
 	}
 
-	
+	public GameUser(int userNum, String userId, String nick) {
+		super();
+		this.userNum = userNum;
+		this.userId = userId;
+		this.nick = nick;
+	}
+
+	public GameUser(int userNum, String image) {
+		super();
+		this.userNum = userNum;
+		this.image = image;
+	}
 
 	public int getUserNum() {
 		return userNum;
@@ -87,7 +97,6 @@ public class GameUser {
 		this.image = image;
 	}
 
-
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -106,6 +115,5 @@ public class GameUser {
 		builder.append("]");
 		return builder.toString();
 	}
-	
 	
 } //class
