@@ -1,6 +1,5 @@
 package com.scsa.user;
 
-
 //VO
 public class GameUser {
 
