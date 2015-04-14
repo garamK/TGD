@@ -19,4 +19,14 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/User.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GameServlet</display-name>
+    <servlet-name>GameServlet</servlet-name>
+    <servlet-class>com.scsa.game.GameServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GameServlet</servlet-name>
+    <url-pattern>/Game.do</url-pattern>
+  </servlet-mapping>
 </web-app>
