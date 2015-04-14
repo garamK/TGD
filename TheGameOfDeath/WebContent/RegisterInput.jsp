@@ -10,17 +10,22 @@
 <body>
 <h1>회원가입</h1>
 <p>
-	<form action="user.do?action=REGISTER" method="post">
+	<form  enctype="multipart/form-data" action="User.do?action=REGISTER" method="post">
 		<table>
+			<tr>
+				<th>이미지</th>
+				<td><input type="file" style="width:100" name="img"/></td>
+			</tr>
+		
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="UserId"/></td>
 			</tr>
 			<tr>
-			<tr>
 				<th>닉네임</th>
 				<td><input type="text" name="Nick"/></td>
 			</tr>
+			<tr>
 				<th>비밀번호</th>
 				<td><input type="password" name="Pass"/></td>
 			</tr>
@@ -28,7 +33,6 @@
 				<th>비밀번호 확인</th>
 				<td><input type="password" name="Pass2"/></td>
 			</tr>
-			
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="가입"/>

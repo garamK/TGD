@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<script type="text/javascript">
+function check(){
+	location.href="RegisterInput.jsp";
+	
+}
+</script>
 </head>
 
 <body>
-	<!--  로그인 안했을 때 -->
-	<!--  로그인 했을 때 -->
-
-	<c:choose>
-		<c:when test="${empty UserId}">
 			<center>
 			<h1>죽음의 세계로 당신을 초대합니다.</h1>
 			<p>
+			<form action="User.do?action=LOGIN" method="post">
 			<table>
 				<tr>
 					<th width="70" height="30">아이디</th>
@@ -29,23 +31,11 @@
 				<tr>
 					<td colspan="2" align="center">
 					<input type="submit" value="로그인" /> 
-					<input type="reset" value="취소" />
-					<a href="Register.html">회원가입</a>
+					<input type="button" value="회원가입" onclick="check()"/>
 					</td>
 				</tr>
 			</table>
+			</form>
 			<p />
 			</center>
-		</c:when>
-
-		<c:when test="${not empty UserId}">
-			<a href="login.do?action=LOGOUT">로그아웃</a>
-			<p />
-			<a href="NoticeInput.jsp">공지사항</a>
-			<p />
-			<a href="notice.do?action=LIST">공지목록</a>
-			<p />
-		</c:when>
-	</c:choose>
-</body>
 </html>
