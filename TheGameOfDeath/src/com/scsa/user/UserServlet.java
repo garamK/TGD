@@ -21,7 +21,7 @@ public class UserServlet extends HttpServlet {
 		String nextPage = "";
 		
 		switch(action){
-		case "register" : nextPage = register(request, response); break;
+		case "REGISTER" : nextPage = register(request, response); break;
 				
 		
 		}
@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet {
 			
 			GameUser gu = new GameUser(userNum, userId, nick, pass, play, image);
 			
-			
+			System.out.println(gu);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
