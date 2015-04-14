@@ -24,6 +24,7 @@ public class GameUser {
 		super();
 	}
 
+	
 	public int getUserNum() {
 		return UserNum;
 	}
@@ -80,13 +81,6 @@ public class GameUser {
 		builder.append("]");
 		return builder.toString();
 	}
-
 	
-	
-	
-	
-	
-	
-
 
 } //class
