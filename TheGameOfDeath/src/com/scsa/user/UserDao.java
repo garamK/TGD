@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import com.scsa.db.DBUtil;
 
 //유저관리DAO -- 관리자가 볼거.
@@ -116,6 +117,35 @@ public class UserDao {
 		
 		return list;
 	}
+	
+	
+	//
+	public GameUser search(String userId) throws SQLException{
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		GameUser gu = null;
+		try{
+			con = DBUtil.getConnection();
+			String sql = "select userNum, userId, nick from GameUser where userId = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, userId);
+			rs = ps.executeQuery();
+			
+			if(rs.next()){
+				gu = new GameUser(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+			
+		}finally{
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
+		return gu;
+	}
+	
 	
 	
 	//유저 관리자가 강퇴시키기/유저 스스로가 탈퇴하기  -- userId 입력받아서
