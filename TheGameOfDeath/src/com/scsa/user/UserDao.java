@@ -27,6 +27,7 @@ public class UserDao {
 			Connection con = null;
 			PreparedStatement ps = null;
 			ResultSet rs = null;
+			
 			try {
 				con = DBUtil.getConnection();
 				String q = "Select max(userNum) from GameUser"; // 지금 입력된 값들 중에 가장 큰 값
@@ -53,7 +54,7 @@ public class UserDao {
 
 		try {
 			con = DBUtil.getConnection();
-			String sql = "insert into GameUser values(?, ?, ?, ?, false, ?)";
+			String sql = "insert into GameUser values(?,?,?,?,0,?)";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, getMaxUserNum() + 1); // 시퀀스해주는 부분
 			ps.setString(2, gu.getUserId());
@@ -61,6 +62,7 @@ public class UserDao {
 			ps.setString(4, gu.getPass());
 			ps.setString(5, gu.getImage());
 			ps.executeUpdate();
+		
 		} finally {
 			DBUtil.close(ps);
 			DBUtil.close(con);
