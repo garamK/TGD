@@ -1,28 +1,26 @@
 package com.scsa.user;
 
-
 //VO
 public class GameUser {
 
-	private int UserNum;
-	private String UserId;
-	private String Nick;
-	private String Pass;
-	private int Play;
+	private int userNum;
+	private String userId;
+	private String nick;
+	private String pass;
+	private int play;
 	private String image;
 
 	
 	public GameUser(int userNum, String userId, String nick, String pass,
 			int play, String image) {
 		super();
-		UserNum = userNum;
-		UserId = userId;
-		Nick = nick;
-		Pass = pass;
-		Play = play;
+		this.userNum = userNum;
+		this.userId = userId;
+		this.nick = nick;
+		this.pass = pass;
+		this.play = play;
 		this.image = image;
 	}
-
 
 	public GameUser() {
 		super();
@@ -31,52 +29,52 @@ public class GameUser {
 	
 
 	public int getUserNum() {
-		return UserNum;
+		return userNum;
 	}
 
 
 	public void setUserNum(int userNum) {
-		UserNum = userNum;
+		this.userNum = userNum;
 	}
 
 
 	public String getUserId() {
-		return UserId;
+		return userId;
 	}
 
 
 	public void setUserId(String userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 
 	public String getNick() {
-		return Nick;
+		return nick;
 	}
 
 
 	public void setNick(String nick) {
-		Nick = nick;
+		this.nick = nick;
 	}
 
 
 	public String getPass() {
-		return Pass;
+		return pass;
 	}
 
 
 	public void setPass(String pass) {
-		Pass = pass;
+		this.pass = pass;
 	}
 
 
 	public int getPlay() {
-		return Play;
+		return play;
 	}
 
 
 	public void setPlay(int play) {
-		Play = play;
+		this.play = play;
 	}
 
 
@@ -94,15 +92,15 @@ public class GameUser {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("GameUser [UserNum=");
-		builder.append(UserNum);
+		builder.append(userNum);
 		builder.append(", UserId=");
-		builder.append(UserId);
+		builder.append(userId);
 		builder.append(", Nick=");
-		builder.append(Nick);
+		builder.append(nick);
 		builder.append(", Pass=");
-		builder.append(Pass);
+		builder.append(pass);
 		builder.append(", Play=");
-		builder.append(Play);
+		builder.append(play);
 		builder.append(", image=");
 		builder.append(image);
 		builder.append("]");
