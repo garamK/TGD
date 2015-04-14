@@ -42,6 +42,8 @@ public class UserDao {
 				DBUtil.close(ps);
 				DBUtil.close(con);
 			}
+			
+			System.out.println(max);
 			return max;
 		}
 	

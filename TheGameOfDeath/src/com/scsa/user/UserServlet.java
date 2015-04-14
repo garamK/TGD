@@ -43,21 +43,18 @@ public class UserServlet extends HttpServlet {
 		MultipartRequest mRequest = null;
 
 		try {
-			mRequest = new MultipartRequest(request,saveFullDir,maxFileSize,encoding,		
+			mRequest = new MultipartRequest(request,saveFullDir,maxFileSize,encoding,
 					new DefaultFileRenamePolicy());
 			
-			int userNum = Integer.parseInt(mRequest.getParameter("UserNum").trim());
 			String userId = mRequest.getParameter("UserId").trim();
 			String nick = mRequest.getParameter("Nick").trim();
 			String pass = mRequest.getParameter("Pass").trim();
-			int play = Integer.parseInt(mRequest.getParameter("Play").trim());
-			String image = mRequest.getParameter("Image").trim();
+			String image = mRequest.getFilesystemName("Image");
 			
-			GameUser gu = new GameUser(userNum, userId, nick, pass, play, image);
+			GameUser gu = new GameUser(0, userId, nick, pass, 0, image);
+			System.out.println(gu); //검증용~~
 
 			dao.save(gu);
-			
-			System.out.println(gu); //검증용~~
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,6 +88,8 @@ public class UserServlet extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			request.setAttribute("msg", "로그인 중 에러가 발생하였습니다.");
+			return "Error.jsp";
 		}
 		request.setAttribute("msg", "아이디 또는 패스워드가 잘못되었습니다");
 		return "Error.jsp";
