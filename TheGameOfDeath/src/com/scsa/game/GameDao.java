@@ -17,7 +17,6 @@ public class GameDao {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		
 		try{
 			con = DBUtil.getConnection();
 			String sql = "select s.userNum, image, maxHealth, "
@@ -31,7 +30,6 @@ public class GameDao {
 				result = new Status(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)
 						, rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10), rs.getInt(11));
 			}
-			
 		}finally{
 			DBUtil.close(rs);
 			DBUtil.close(ps);
@@ -119,6 +117,30 @@ public class GameDao {
 			DBUtil.close(ps);
 			DBUtil.close(con);
 		}
+	}
+	
+	public Item getItemFromMap(int location) throws SQLException{
 		
+		Item result = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try{
+			con = DBUtil.getConnection();
+			String sql = "select i.itemNum, iType, stat, itemName, chance from item i, itemMap im "
+					+ "where i.itemNum = im.itemNum and mapNum = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, location);
+			rs = ps.executeQuery();
+			if(rs.next()){
+				result = new Item(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+			}
+		}finally{
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
+		return result;
 	}
 }
