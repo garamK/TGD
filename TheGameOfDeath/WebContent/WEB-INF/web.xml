@@ -34,4 +34,14 @@
     <servlet-name>NoticeServlet</servlet-name>
     <url-pattern>/Notice.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SurvivorServlet</display-name>
+    <servlet-name>SurvivorServlet</servlet-name>
+    <servlet-class>com.scsa.game.SurvivorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SurvivorServlet</servlet-name>
+    <url-pattern>/Survivor.do</url-pattern>
+  </servlet-mapping>
 </web-app>
