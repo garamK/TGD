@@ -17,5 +17,7 @@ ${ev.msg}
 </c:if>
 </textarea>
 <a href="Game.do">탐색</a>
+<a href="Notice.do?action=LIST">공지사항리스트</a>
+<a href="User.do?action=LOGOUT">로그아웃</a>
 </body>
 </html>

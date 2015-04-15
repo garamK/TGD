@@ -65,12 +65,8 @@
 	
 	<c:if test="${sessionScope.userId eq 'Admin'}">
 		<a href="Notice.do?action=LIST">공지목록</a>
-		<a href="GameMain.jsp">게임메인페이지</a>
 	</c:if>
-	
-	<c:if test="${sessionScope.userId eq! 'Admin'}">
 		<a href="GameMain.jsp">게임메인페이지</a>
-	</c:if>
 	
 	</c:if>
 
