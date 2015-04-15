@@ -26,7 +26,11 @@ public class GameServlet extends HttpServlet {
     	
     	nextPage = explore(request, response);
     	
-    	
+    	try {
+			userInfo(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 			
 		request.getRequestDispatcher(nextPage).forward(request, response);
     	
@@ -36,8 +40,9 @@ public class GameServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	Status user = dao.getUser((int)session.getAttribute("userNum")); 
-    	
+    	String weapon = dao.getItemName(user.getItemNum());
     	request.setAttribute("userInfo", user);
+    	request.setAttribute("weapon", weapon);
     }
     
     public String explore(HttpServletRequest request, HttpServletResponse response)
@@ -259,6 +264,6 @@ public class GameServlet extends HttpServlet {
 			e.printStackTrace();
 		}
     	
-    	return "GameMain.jsp";
+    	return "Main.jsp";
     }
 }

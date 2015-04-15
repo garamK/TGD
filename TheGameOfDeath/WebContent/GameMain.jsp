@@ -18,5 +18,34 @@ ${ev.msg}
 </textarea>
 <a href="Game.do">탐색</a>
 
+<p>
+유저 정보<br>
+
+<table>
+	<tr>
+		<td><img src="images/${userInfo.image}"/></td><td>${userInfo.nick}</td>
+	</tr>
+	<tr>
+		<td>체력</td><td>${userInfo.health} / ${userInfo.maxHealth}</td>
+	</tr>
+	<tr>
+		<td>공격력</td><td>${userInfo.power}</td>
+	</tr>
+	<tr>
+		<td>살해수</td><td>${userInfo.kill}</td>
+	</tr>
+	<tr>
+		<td>사망수</td><td>${userInfo.death}</td>
+	</tr>
+	<tr>
+		<td>위치</td><td>${userInfo.location}</td>
+	</tr>
+	<tr>
+		<td>장비</td><td>${weapon}</td>
+	</tr>
+
+</table>
+
+
 </body>
 </html>

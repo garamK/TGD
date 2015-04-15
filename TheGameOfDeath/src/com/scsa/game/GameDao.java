@@ -249,6 +249,33 @@ public class GameDao {
 		return result;
 	}
 	
+	public String getItemName(int itemNum) throws SQLException{
+		
+		String result = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			con = DBUtil.getConnection();
+			String q = "Select ItemName from item where itemNum = ?";
+			
+			ps = con.prepareStatement(q);
+			ps.setInt(1, itemNum);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				result = rs.getString(1);
+			}
+			
+		} finally {
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
+		return result;
+	}
+	
 	public void dead(int userNum) throws SQLException{
 		
 		Connection con = null;
