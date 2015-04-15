@@ -18,12 +18,12 @@
 	
 	<c:forEach var="user" items="${list}">	
 	<tr>
-	<td>${user.userNum}</td><td>${user.userId}</td><td>${user.nick}</td><td>${user.play}</td><td><a href="user.do?action=DELETE&num=${user.userNum}">강퇴시킬거다</a></td>
+	<td>${user.userNum}</td><td>${user.userId}</td><td>${user.nick}</td><td>${user.play}</td><td><a href="user.do?action=DELETE&userNum=${user.userNum}">강퇴시킬거다</a></td>
 	</tr>
 	</c:forEach>
 </table>
 <p>
-<a href="어디로 보내줄까?">어디로보낼지 안정함</a>
+<a href="GameMain.jsp">게임메인페이지</a>
 </body>
 </html>
 

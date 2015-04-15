@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>TheGameOfDeath</display-name>
   <welcome-file-list>
-    <welcome-file>Index.jsp</welcome-file>
+    <welcome-file>Notice.do</welcome-file>
   </welcome-file-list>
   <servlet>
     <description></description>
@@ -23,5 +23,15 @@
   <servlet-mapping>
     <servlet-name>GameServlet</servlet-name>
     <url-pattern>/Game.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NoticeServlet</display-name>
+    <servlet-name>NoticeServlet</servlet-name>
+    <servlet-class>com.scsa.notice.NoticeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NoticeServlet</servlet-name>
+    <url-pattern>/Notice.do</url-pattern>
   </servlet-mapping>
 </web-app>

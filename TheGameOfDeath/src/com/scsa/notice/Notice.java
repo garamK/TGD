@@ -17,6 +17,14 @@ public class Notice {
 	}
 	
 	
+	
+	public Notice(String title, String content) {
+		super();
+		this.title = title;
+		this.content = content;
+	}
+
+
 	public Notice() {
 		super();
 	}

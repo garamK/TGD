@@ -24,11 +24,11 @@
 	</tr>
 	<tr>
 		<th>닉네임</th>
-		<td><textarea rows="1" cols="20" name="cont">${user.nick}</textarea></td>
+		<td><textarea rows="1" cols="20" name="nick">${user.nick}</textarea></td>
 	</tr>
 	<tr>
 		<th>비밀번호</th>
-		<td><textarea rows="1" cols="20" name="cont">${user.pass}</textarea></td>
+		<td><textarea rows="1" cols="20" name="pass">${user.pass}</textarea></td>
 	</tr>
 	
 	<tr>
@@ -40,13 +40,10 @@
 </table>
 </form>
 
-<a href="User.do?action=UPDATE&num=${user.userNum}">정보수정</a>
-<a href="User.do?action=DELETE&num=${user.userNum}">탈퇴하기</a>
+<a href="User.do?action=UPDATE&userNum=${user.userNum}">정보수정</a>
+<a href="User.do?action=DELETE&userNum=${user.userNum}">탈퇴하기</a>
 
-<a href="어디로 보내줄까????">어디로보내줄까????</a>
-
-
-
+<a href="GameMain.jsp">게임메인페이지</a>
 
 </body>
 </html>
