@@ -23,7 +23,7 @@
 	</c:forEach>
 </table>
 <p>
-<a href="GameMain.jsp">게임메인페이지</a>
+<a href="Main.jsp">메인페이지</a>
 </body>
 </html>
 
