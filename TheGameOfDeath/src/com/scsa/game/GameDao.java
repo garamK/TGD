@@ -148,7 +148,7 @@ public class GameDao {
 	}
 	
 	public void setEvent(Event ev) throws SQLException{
-		
+		System.out.println(ev);
 		Connection con = null;
 		PreparedStatement ps = null;
 		try{
@@ -160,6 +160,7 @@ public class GameDao {
 			ps.setInt(3, ev.getUser2());
 			ps.setString(4, ev.getMsg());
 			
+			ps.executeUpdate();
 			
 		}finally{
 			DBUtil.close(ps);

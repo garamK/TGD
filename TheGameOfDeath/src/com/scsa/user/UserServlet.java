@@ -84,15 +84,17 @@ public class UserServlet extends HttpServlet {
 				s.setAttribute("userNum", gu.getUserNum());
 				s.setAttribute("nick", gu.getNick());
 				
-				
+				System.out.println(gu);
+			}
+			else{
+				request.setAttribute("msg", "아이디 또는 비밀번호가 잘못되었습니다.");
+				return "Error.jsp";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "로그인 중 에러가 발생하였습니다.");
 			return "Error.jsp";
 		}
-		
-		System.out.println(userId);
 		
 		if(userId.equals("Admin")){
 			return "Admin.jsp"; //관리자인 경우 정상처리 했을 때,

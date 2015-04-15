@@ -22,16 +22,22 @@ public class GameServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	
-    	HttpSession session = request.getSession();
-    	
-    	session.setAttribute("userNum", 1);
-    	
     	String nextPage = "";
     	
     	nextPage = explore(request, response);
+    	
+    	
 			
 		request.getRequestDispatcher(nextPage).forward(request, response);
     	
+    }
+    
+    private void userInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+    	
+    	HttpSession session = request.getSession();
+    	Status user = dao.getUser((int)session.getAttribute("userNum")); 
+    	
+    	request.setAttribute("userInfo", user);
     }
     
     public String explore(HttpServletRequest request, HttpServletResponse response)
@@ -60,8 +66,6 @@ public class GameServlet extends HttpServlet {
 				
 				Status countUser = userList.get(dice);
 				int eventGroup = dao.getMaxEventGroup()+1;
-				
-				System.out.println("나 : " +user + " 상대 : " + countUser);
 				
 				if(countUser.getUserNum() != user.getUserNum()){
 					String msg = user.getNick() +"은(는) " + countUser.getNick()+"을(를) 발견했다.";
