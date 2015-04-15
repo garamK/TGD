@@ -7,6 +7,7 @@ public class Item {
 	private int stat;
 	private String itemName;
 	private int chance;
+	private int quantity;
 	
 	public Item(){}
 	
@@ -17,6 +18,16 @@ public class Item {
 		this.stat = stat;
 		this.itemName = itemName;
 		this.chance = chance;
+	}
+	
+	public Item(int itemNum, int iType, int stat, String itemName, int chance, int quantity) {
+		super();
+		this.itemNum = itemNum;
+		this.iType = iType;
+		this.stat = stat;
+		this.itemName = itemName;
+		this.chance = chance;
+		this.quantity = quantity;
 	}
 
 	public int getItemNum() {
@@ -59,13 +70,22 @@ public class Item {
 		this.chance = chance;
 	}
 
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Item [itemNum=").append(itemNum).append(", iType=")
 				.append(iType).append(", stat=").append(stat)
 				.append(", itemName=").append(itemName).append(", chance=")
-				.append(chance).append("]");
+				.append(chance).append(", quantity=").append(quantity)
+				.append("]");
 		return builder.toString();
 	}
 	

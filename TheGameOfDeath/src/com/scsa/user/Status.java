@@ -15,10 +15,10 @@ public class Status extends GameUser {
 	
 	public Status(){}
 
-	public Status(int userNum, String image, int maxHealth, int health, int power,
+	public Status(int userNum, String userId, String nick, String image, int maxHealth, int health, int power,
 			int stamina, int kill, int death, int location, int decision,
 			int itemNum) {
-		super(userNum, image);
+		super(userNum, userId, nick, image);
 		this.maxHealth = maxHealth;
 		this.health = health;
 		this.power = power;
@@ -127,7 +127,10 @@ public class Status extends GameUser {
 				.append(", kill=").append(kill).append(", death=")
 				.append(death).append(", location=").append(location)
 				.append(", decision=").append(decision).append(", itemNum=")
-				.append(itemNum).append("]");
+				.append(itemNum).append(", getUserNum()=").append(getUserNum())
+				.append(", getUserId()=").append(getUserId())
+				.append(", getNick()=").append(getNick())
+				.append(", getImage()=").append(getImage()).append("]");
 		return builder.toString();
 	}
 }

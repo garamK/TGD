@@ -12,7 +12,6 @@ public class GameUser {
 	
 	public GameUser(int userNum, String userId, String nick, String pass,
 			int play, String image) {
-		super();
 		this.userNum = userNum;
 		this.userId = userId;
 		this.nick = nick;
@@ -22,19 +21,18 @@ public class GameUser {
 	}
 
 	public GameUser() {
-		super();
 	}
 
 	public GameUser(int userNum, String userId, String nick) {
-		super();
 		this.userNum = userNum;
 		this.userId = userId;
 		this.nick = nick;
 	}
 
-	public GameUser(int userNum, String image) {
-		super();
+	public GameUser(int userNum, String userId, String nick, String image) {
 		this.userNum = userNum;
+		this.userId = userId;
+		this.nick = nick;
 		this.image = image;
 	}
 

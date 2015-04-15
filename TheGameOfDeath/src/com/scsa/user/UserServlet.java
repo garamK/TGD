@@ -82,6 +82,7 @@ public class UserServlet extends HttpServlet {
 				HttpSession s = request.getSession();
 				s.setAttribute("userId", userId);
 				s.setAttribute("userNum", gu.getUserNum());
+				s.setAttribute("nick", gu.getNick());
 				
 				return "어디로보낼까?????"; // 정상처리했을 때,
 
