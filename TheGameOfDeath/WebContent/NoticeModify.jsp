@@ -40,7 +40,7 @@
 </form>
 
 <a href="Notice.do?action=LIST">공지목록</a>
-<a href="GameMain.jsp">게임메인페이지</a>
+<a href="Main.jsp">메인페이지</a>
 <a href="Notice.do?action=DELETE&noticeNum=${notice.noticeNum}">공지 삭제</a>
 
 </body>

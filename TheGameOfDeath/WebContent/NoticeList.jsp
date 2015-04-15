@@ -36,7 +36,7 @@
 			</c:forEach>
 		</table>
 		<a href="Notice.do?action=INPUT">공지사항 등록</a>
-		<a href="GameMain.jsp">게임메인페이지</a>
+		<a href="Main.jsp">메인페이지</a>
 
 	</c:if>
 
@@ -61,7 +61,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="GameMain.jsp">게임메인페이지</a>
+		<a href="Main.jsp">메인페이지</a>
 
 	</c:if>
 

@@ -12,6 +12,6 @@
 
 <a href="Notice.do?action=LIST">공지목록</a>
 <a href="Notice.do?action=INPUT">공지등록</a>
-
+<a href="User.do?action=LOGOUT">로그아웃</a>
 </body>
 </html>

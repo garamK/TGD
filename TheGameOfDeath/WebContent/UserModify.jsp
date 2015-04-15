@@ -43,7 +43,7 @@
 <a href="User.do?action=UPDATE&userNum=${user.userNum}">정보수정</a>
 <a href="User.do?action=DELETE&userNum=${user.userNum}">탈퇴하기</a>
 
-<a href="GameMain.jsp">게임메인페이지</a>
+<a href="Main.jsp">메인페이지</a>
 
 </body>
 </html>

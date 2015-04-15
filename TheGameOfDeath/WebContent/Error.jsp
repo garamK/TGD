@@ -9,6 +9,6 @@
 
 <body>
 <h1>${msg}</h1>
-<a href="GameMain.jsp">메인페이지</a>
+<a href="Main.jsp">메인페이지</a>
 </body>
 </html>
