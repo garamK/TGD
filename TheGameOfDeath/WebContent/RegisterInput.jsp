@@ -19,19 +19,19 @@
 		
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="UserId" id="UserId"/></td>
+				<td><input type="text" name="userId" id="userId"/></td>
 			</tr>
 			<tr>
 				<th>닉네임</th>
-				<td><input type="text" name="Nick" id="Nick"/></td>
+				<td><input type="text" name="nick" id="nick"/></td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="Pass" id="Pass"/></td>
+				<td><input type="password" name="pass" id="pass"/></td>
 			</tr>
 			<tr>
 				<th>비밀번호 확인</th>
-				<td><input type="password" name="Pass2" id="Pass2"/></td>
+				<td><input type="password" name="pass2" id="pass2"/></td>
 			</tr>
 			<tr>
 				<td colspan="2">

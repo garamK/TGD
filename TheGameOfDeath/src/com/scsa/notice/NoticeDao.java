@@ -19,7 +19,7 @@ public class NoticeDao {
 	*/
 
 	
-	// 저장하기(공지등록)
+	// 저장하기(공지등록) //관리자용
 	public void save(Notice n) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -64,7 +64,7 @@ public class NoticeDao {
 	}
 
 	
-	// 공지목록보여주기
+	// 공지목록보여주기 //관리자, 회원용
 	public List<Notice> search() throws SQLException {
 		List<Notice> list = new ArrayList<Notice>();
 
@@ -82,6 +82,8 @@ public class NoticeDao {
 				list.add(new Notice(rs.getInt(1), rs.getString(2), rs
 						.getString(3), rs.getString(4)));
 			}
+			
+			System.out.println(list);
 		} finally {
 			DBUtil.close(rs);
 			DBUtil.close(ps);
@@ -91,10 +93,10 @@ public class NoticeDao {
 	}
 
 	
-	// 해당하는 애 번호로 찾기 -- 상세보기할 때 필요할 수 있음.
+	// 해당하는 애 번호로 찾기 -- 상세보기할 때 필요할 수 있음. //관리자, 회원 용
 	public Notice search(int noticeNum) throws SQLException {
 
-		Notice n = null; // 리턴타입 먼저 만들고 가자~
+		Notice n = null; 
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -120,7 +122,7 @@ public class NoticeDao {
 	}
 
 	
-	// 공지삭제부분
+	// 공지삭제부분 //관리자용
 	public void delete(int noticeNum) throws SQLException {
 
 		Connection con = null;
@@ -140,7 +142,7 @@ public class NoticeDao {
 	}
 
 	
-	// 공지업데이트부분 = 해당번호의 내용 수정할 거.
+	// 공지업데이트부분 = 해당번호의 내용 수정할 거.//관리자용
 	public void update(int noticeNum, String content) throws SQLException {
 
 		Connection con = null;

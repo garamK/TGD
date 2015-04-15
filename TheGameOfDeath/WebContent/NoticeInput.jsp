@@ -13,11 +13,11 @@
 		<table>
 			<tr>
 				<th> 제 목 </th>
-				<td><input type="text" name="title"/></td>
+				<td><input type="text" name="title" id="title"/></td>
 			</tr>
 			<tr>
 				<th> 내 용 </th>
-				<td><textarea name="cont" cols="50" rows="5"> </textarea></td>
+				<td><textarea name="content" id="content" cols="100" rows="10"> </textarea></td>
 			</tr>
 		
 			<tr>

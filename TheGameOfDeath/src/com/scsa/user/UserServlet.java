@@ -46,10 +46,10 @@ public class UserServlet extends HttpServlet {
 			mRequest = new MultipartRequest(request,saveFullDir,maxFileSize,encoding,
 					new DefaultFileRenamePolicy());
 			
-			String userId = mRequest.getParameter("UserId").trim();
-			String nick = mRequest.getParameter("Nick").trim();
-			String pass = mRequest.getParameter("Pass").trim();
-			String image = mRequest.getFilesystemName("Image");
+			String userId = mRequest.getParameter("userId").trim();
+			String nick = mRequest.getParameter("nick").trim();
+			String pass = mRequest.getParameter("pass").trim();
+			String image = mRequest.getFilesystemName("image");
 			
 			GameUser gu = new GameUser(0, userId, nick, pass, 0, image);
 			System.out.println(gu); //검증용~~
@@ -62,7 +62,7 @@ public class UserServlet extends HttpServlet {
 			return "Error.jsp";
 		}
 		
-		return "Index.jsp";
+		return "Notice.do";
 	}
 	
 	
@@ -83,17 +83,22 @@ public class UserServlet extends HttpServlet {
 				s.setAttribute("userId", userId);
 				s.setAttribute("userNum", gu.getUserNum());
 				
-				return "어디로보낼까?????"; // 정상처리했을 때,
-
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "로그인 중 에러가 발생하였습니다.");
 			return "Error.jsp";
 		}
-		request.setAttribute("msg", "아이디 또는 패스워드가 잘못되었습니다");
-		return "Error.jsp";
-
+		
+		System.out.println(userId);
+		
+		if(userId.equals("Admin")){
+			return "Admin.jsp"; //관리자인 경우 정상처리 했을 때,
+		}else{
+			return "GameMain.jsp"; // User인 경우 정상처리 했을 때,
+		}
+		
 	} // 
 
 	
