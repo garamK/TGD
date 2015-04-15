@@ -26,7 +26,7 @@
 
 		<c:forEach var="s" items="${list}">
 			<tr>
-			<td><img src="img/${s.image}"/></td>
+			<td><img src="images/${s.image}"/></td>
 				<td>${s.userNum}</td>
 				<td>${s.userId}</td>
 				<td>${s.nick}</td>
