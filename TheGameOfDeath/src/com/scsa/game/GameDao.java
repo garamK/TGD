@@ -210,7 +210,7 @@ public class GameDao {
 			ps.setInt(1, userNum);
 			rs = ps.executeQuery();
 			while(rs.next()){
-				list.add(new Item());
+				list.add(new Item(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), 0, rs.getInt(5)));
 			}
 			
 		}finally{

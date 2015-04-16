@@ -74,15 +74,17 @@ public class UserServlet extends HttpServlet {
 			if (dao.loginCheck(userId, pass)) { 
 
 				GameUser gu = dao.search(userId);
+				System.out.println(gu.getUserNum()); //디버깅용
 				ArrayList <Item> itemList  = daoGame.getItemList(gu.getUserNum()); //++++
 				
 				HttpSession s = request.getSession();
 				s.setAttribute("userId", userId);
 				s.setAttribute("userNum", gu.getUserNum());
-				s.setAttribute("nick", gu.getNick());
+				s.setAttribute("nick", gu.getNick());///
 				s.setAttribute("itemList", itemList); //++++
 				
-				System.out.println(gu);
+				System.out.println(gu); //디
+				System.out.println(itemList); //디
 			}
 			else{
 				request.setAttribute("msg", "아이디 또는 비밀번호가 잘못되었습니다.");
