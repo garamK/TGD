@@ -26,7 +26,7 @@ public class GameServlet extends HttpServlet {
     	
     	String action = request.getParameter("action");
     	
-    	if(action != null){
+    	if(action != null && action.equals("explore")){
     		nextPage = explore(request, response);
     	}
     	
