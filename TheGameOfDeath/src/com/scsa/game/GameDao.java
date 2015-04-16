@@ -342,6 +342,25 @@ public class GameDao {
 			DBUtil.close(con);
 		}
 	}
+	
+	public void itemGet(int itemNum, int userNum) throws SQLException{
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "update userItem set quantity=quantity+1 where itemNum=? and userNum=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, itemNum);
+			ps.setInt(2, userNum);
+			
+			ps.executeUpdate();
+		}finally{
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+	}
 
 	//+++아이템지우기
 	public void deleteItem(int itemNum, int userNum) throws SQLException {
@@ -361,6 +380,24 @@ public class GameDao {
 			DBUtil.close(con);
 		}
 	}//delete
+	
+	public void insertUserItem(int itemNum, int userNum) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "insert into userItem values(ui_seq.nextval, ?, ?, 1);";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userNum);
+			ps.setInt(2, itemNum);
+			ps.executeUpdate();
+		}finally{
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+	}
 	
 	
 	public int getLocation(int userNum) throws SQLException{

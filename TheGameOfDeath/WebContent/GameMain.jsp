@@ -54,14 +54,19 @@
 		<tr>
 		<th  width="100">선택</th><th width="100">아이템</th><th width="100">수량</th><th width="100">체력</th>
 		</tr>
+		
 		<c:forEach var="i" items="${itemList}">
+			
 			<tr>
 				<td><input	type="radio" name="itemNum" value="${i.itemNum}" /></td>
 				<td>${i.itemName}</td>
-				<td><input type="hidden" value="${i.quantity}" name="quantity">${i.quantity}</td>
+				<td>${i.quantity}</td>
 				<td>${i.stat}</td>
 			</tr>
 		</c:forEach>
+		<c:if test="${empty itemList}">
+				<tr><td colspan="4" align="center">아이템이 없습니다!</td></tr>
+			</c:if>
 		<tr><td><br/></td></tr>
 	<tr align=center ><td colspan=4><input type="submit" value="아이템사용"/></td></tr>
 	<tr><td><br/></td></tr>
