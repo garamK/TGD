@@ -6,14 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
-<script type="text/javascript">
-function itemUse(){
-	location.href="??????";
-	
-}
-
-</script>
 </head>
 
 
@@ -62,21 +54,22 @@ ${ev.msg}
 	</table>
 
 
-	<form action="Game.do?action=무슨값&itemNum=${item.itemNum}" method="post">
+	<form action="Game.do?action=itemUse" method="post">
 	<table>
 	<tr>
 	<th width="100">선택</th><th width="100">아이템</th><th width="100">수량</th><th width="100">체력</th>
 	</tr>
 		<c:forEach var="i" items="${itemList}">
 			<tr>
-				<td><input	type="radio" name="item" value="${i.itemNum}" /></td>
+				<td><input	type="radio" name="itemNum" value="${i.itemNum}" /></td>
 				<td>${i.itemName}</td>
 				<td>${i.quantity}</td>
 				<td>${i.stat}</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<input type="button" value="아이템사용" onclick="itemUse()">
+	
+	<input type="submit" value="아이템사용"/>
 	</form>
 	
 	
