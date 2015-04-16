@@ -29,7 +29,7 @@ public class NoticeDao {
 			ps = con.prepareStatement(q);
 			ps.setInt(1, getMaxNoticeNum() + 1);
 			ps.setString(2, n.getTitle());
-			ps.setString(3, n.getContent());
+			ps.setString(3, n.getContent().replaceAll("\n", "<br>"));
 			ps.executeUpdate();
 		} finally {
 			DBUtil.close(ps);

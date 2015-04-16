@@ -78,6 +78,22 @@ public class AdminDao {
 			DBUtil.close(con);
 		}
 	}
+	
+	public void gameEnd() throws SQLException{
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "update gameUser set play = 0";
+			ps = con.prepareStatement(sql);
+			
+		}finally{
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+	}
 }
 
 

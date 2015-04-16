@@ -328,7 +328,6 @@ public class GameDao {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, userNum);
 			ps.setInt(2, itemNum);
-			
 			ps.executeUpdate();
 		}finally{
 			DBUtil.close(ps);
