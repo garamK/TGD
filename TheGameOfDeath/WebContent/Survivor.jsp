@@ -9,36 +9,27 @@
 </head>
 
 <body>
-	<h1>생존자 목록</h1>
-
-	<table>
-		<tr>
-			<th>이미지</th>
-			<th>회원번호</th>
-			<th>아이디</th>
-			<th>닉네임</th>
-			<th>체력</th>
-			<th>공격력</th>
-			<th>행동력</th>
-			<th>킬점수</th>
-			<th>사망횟수</th>
+	<center>
+	<table >
+		<tr align="center">
+			<td width="110"></td>
+			<td width="90"><b>순위</b></td>
+			<td width="90"><b>닉네임</b></td>
+			<td width="90"><b>살해횟수</b></td>
+			<td width="90"><b>사망횟수</b></td>
 		</tr>
-
-		<c:forEach var="s" items="${list}">
-			<tr>
-			<td><img src="images/${s.image}"/></td>
-				<td>${s.userNum}</td>
-				<td>${s.userId}</td>
+		<c:forEach var="s" items="${list}" varStatus="i">
+			<tr align="center">
+				<td><img width="100px" src="images/${s.image}"/></td>
+				<td>${i.count}</td>
 				<td>${s.nick}</td>
-				<td>${s.health}</td>
-				<td>${s.power}</td>
-				<td>${s.stamina}</td>
 				<td>${s.kill}</td>
 				<td>${s.death}</td>
 			</tr>
 		</c:forEach>
 		
 	</table>
+	</center>
 	<p>
 </body>
 </html>

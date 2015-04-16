@@ -202,33 +202,43 @@
 </script>
 </head>
 <body>
-
-<img src="images/map_numbered.png"> <p>
-
+<center>
 <form action="Map.do" onsubmit="return check()" method="post">
 	<input type="hidden" name="location" id="location" value="${sessionScope.location}"/>
 	
-	<select name="nextLocation" id="nextLocation">
-		<option value="0">이동할 위치를 선택하세요</option>	
-		<option value="1">1</option>	
-		<option value="2">2</option>	
-		<option value="3">3</option>	
-		<option value="4">4</option>	
-		<option value="5">5</option>	
-		<option value="6">6</option>	
-		<option value="7">7</option>	
-		<option value="8">8</option>	
-		<option value="9">9</option>	
-		<option value="10">10</option>
-		<option value="11">11</option>
-		<option value="12">12</option>
-		<option value="13">13</option>
-		<option value="14">14</option>
-		<option value="15">15</option>
-		<option value="16">16</option>
-	</select>
-	<input type="submit" value="이동"/>
+	<table>
+		<tr>
+			<td>
+				현재 위치 : ${sessionScope.location} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+			<td>
+				<select name="nextLocation" id="nextLocation">
+					<option value="0">이동할 위치를 선택하세요</option>	
+					<option value="1">1</option>	
+					<option value="2">2</option>	
+					<option value="3">3</option>	
+					<option value="4">4</option>	
+					<option value="5">5</option>	
+					<option value="6">6</option>	
+					<option value="7">7</option>	
+					<option value="8">8</option>	
+					<option value="9">9</option>	
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+				</select>
+				<input type="submit" value="이동"/>
+			</td>
+		</tr>
+	</table>
+	
 </form>
-
+ <br>
+<img width="550px" src="images/map_numbered.png"> <p>
+</center>
 </body>
 </html>

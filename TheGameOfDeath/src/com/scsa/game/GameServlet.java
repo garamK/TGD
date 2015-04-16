@@ -268,6 +268,10 @@ public class GameServlet extends HttpServlet {
 						else{ // 음식이 나온 경우
 							
 							request.setAttribute("msg", "음식을 발견했습니다.");
+							
+							ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
+							
+							
 						}
 						
 						

@@ -32,7 +32,9 @@ public class SurvivorServlet extends HttpServlet {
 				break;
 			}// 스위치문
 		}// else
-		request.getRequestDispatcher(nextPage).forward(request, response); // /????
+		
+		request.setAttribute("nextPage", nextPage);
+		request.getRequestDispatcher("Main.jsp").forward(request, response);
 	}
 
 	private String list(HttpServletRequest request, HttpServletResponse response) {

@@ -53,7 +53,7 @@ public class GameDao {
 			String sql = "select s.userNum, userId, nick, image, maxHealth, "
 					+ "health, power, stamina, kill, death, "
 					+ "location, decision, itemNum "
-					+ "from status s, gameuser gu where s.userNum = gu.userNum";
+					+ "from status s, gameuser gu where s.userNum = gu.userNum order by kill - death desc";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
@@ -221,6 +221,33 @@ public class GameDao {
 		}
 		
 		return list;
+	}
+	
+	public Item getItem(int itemNum) throws SQLException{
+		
+		Item result = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "select i.ItemNum, IType, Stat, ItemName, quantity from item i, userItem ui "
+					+ "where i.ItemNum = ui.ItemNum and ItemNum = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, itemNum);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				result = new Item(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), 0, rs.getInt(5));
+			}
+			
+		}finally{
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
+		return result;
 	}
 	
 	public int getItemPower(int itemNum) throws SQLException{

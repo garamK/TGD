@@ -32,8 +32,12 @@ public class UserServlet extends HttpServlet {
 		switch(action){
 		case "REGISTER" : nextPage = register(request, response); break;
 		case "LOGIN": nextPage = login(request, response); break;
-		case "LOGOUT": logout(request); break;
+		case "LOGOUT": 
+			logout(request); 
+			request.getRequestDispatcher("Notice.do").forward(request, response);
+			return;
 		}//스위치문
+		
 		request.getRequestDispatcher(nextPage).forward(request, response); //
 	}
 	
