@@ -17,11 +17,7 @@ public class MapServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("location", 1);
-		
-		System.out.println(1);
-		doPost(request, response);
+		request.getRequestDispatcher("Map.jsp").forward(request, response);
 	}
 
 
@@ -31,7 +27,6 @@ public class MapServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String temp = request.getParameter("nextLocation");
-		
 		
 		int nextLocation = 0;
 		int userNum = (int)session.getAttribute("userNum");
