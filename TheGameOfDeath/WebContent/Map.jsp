@@ -206,7 +206,7 @@
 <img src="images/map_numbered.png"> <p>
 
 <form action="Map.do" onsubmit="return check()" method="post">
-	<input type="hidden" name="location" id="location" value="1"/>
+	<input type="hidden" name="location" id="location" value="${sessionScope.location}"/>
 	
 	<select name="nextLocation" id="nextLocation">
 		<option value="0">이동할 위치를 선택하세요</option>	
