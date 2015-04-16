@@ -22,7 +22,7 @@ public class GameServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	
-    	String nextPage = "";
+    	String nextPage = "GameMain.jsp";
     	
     	String action = request.getParameter("action");
     	
@@ -48,9 +48,8 @@ public class GameServlet extends HttpServlet {
 			e.printStackTrace();
 		}
     	
-    	
     	request.setAttribute("nextPage", nextPage);
-		request.getRequestDispatcher("main.jsp").forward(request, response);
+		request.getRequestDispatcher("Main.jsp").forward(request, response);
     }
     
    

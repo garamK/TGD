@@ -17,7 +17,8 @@ public class MapServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("Map.jsp").forward(request, response);
+		request.setAttribute("nextPage", "Map.jsp");
+		request.getRequestDispatcher("Main.jsp").forward(request, response);
 	}
 
 
@@ -47,7 +48,8 @@ public class MapServlet extends HttpServlet {
 			}
 		}
 		
-		request.getRequestDispatcher("Map.jsp").forward(request, response);
+		request.setAttribute("nextPage", "Map.jsp");
+		request.getRequestDispatcher("Main.jsp").forward(request, response);
 		
 	}
 

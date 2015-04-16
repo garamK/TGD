@@ -39,7 +39,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td align="center"><jsp:include page="GameMain.jsp" /></td>
+			<td align="center"><jsp:include page="${nextPage}" /></td>
 		</tr>
 
 	</table>

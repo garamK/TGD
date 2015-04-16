@@ -67,7 +67,7 @@ public class NoticeServlet extends HttpServlet {
 		}
 		
     	request.setAttribute("nextPage", nextPage);
-		request.getRequestDispatcher("main.jsp").forward(request, response);
+		request.getRequestDispatcher("Main.jsp").forward(request, response);
 	}
 
 	//저장하기
