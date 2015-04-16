@@ -63,7 +63,7 @@ ${ev.msg}
 			<tr>
 				<td><input	type="radio" name="itemNum" value="${i.itemNum}" /></td>
 				<td>${i.itemName}</td>
-				<td>${i.quantity}</td>
+				<td><input type="hidden" value="${i.quantity}" name="quantity">${i.quantity}</td>
 				<td>${i.stat}</td>
 			</tr>
 		</c:forEach>

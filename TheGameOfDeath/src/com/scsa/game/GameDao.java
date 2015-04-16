@@ -337,6 +337,32 @@ public class GameDao {
 	}//delete
 	
 	
-	
+	public int getLocation(int userNum) throws SQLException{
+		
+		int result = 0;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			String q = "Select location from status where userNum = ?";
+			
+			ps = con.prepareStatement(q);
+			ps.setInt(1, userNum);
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				result = rs.getInt(1);
+			}
+			
+		} finally {
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
+		return result;
+	}
 	
 }//

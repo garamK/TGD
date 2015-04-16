@@ -81,6 +81,7 @@ public class UserServlet extends HttpServlet {
 				s.setAttribute("userId", userId);
 				s.setAttribute("userNum", gu.getUserNum());
 				s.setAttribute("nick", gu.getNick());///
+				s.setAttribute("location", daoGame.getLocation(gu.getUserNum()));
 				s.setAttribute("itemList", itemList); //++++
 				
 				System.out.println(gu); //디
