@@ -102,6 +102,7 @@ public class GameDao {
 		return list;
 	}
 	
+	//////~~~~~            //attr : 수정하고싶은항목(예를들어, kill, health..)
 	public void updateStatus(String attr, int point, int userNum) throws SQLException{
 		
 		Connection con = null;
@@ -111,7 +112,7 @@ public class GameDao {
 			con = DBUtil.getConnection();
 			String sql = "update status set "+attr+" = ? where userNum = ?";
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, point);
+			ps.setInt(1, point); //수치
 			ps.setInt(2, userNum);
 			
 			ps.executeUpdate();
@@ -294,4 +295,48 @@ public class GameDao {
 			DBUtil.close(con);
 		}
 	}
-}
+
+	//+++++ 아이템사용시 감소시시킬 거.
+	public void itemUse(int itemNum, int userNum) throws SQLException{
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "update userItem set quantity=quantity-1 where itemNum=? and userNum=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, itemNum);
+			ps.setInt(2, userNum);
+			
+			ps.executeUpdate();
+		}finally{
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+	}
+
+	//+++아이템지우기
+	public void deleteItem(int itemNum, int userNum) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "delete userItem where userNum=? and itemNum=?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userNum);
+			ps.setInt(2, itemNum);
+			
+			ps.executeUpdate();
+		}finally{
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+	}//delete
+	
+	
+	
+	
+}//

@@ -28,7 +28,13 @@ public class GameServlet extends HttpServlet {
     	
     	if(action != null && action.equals("explore")){
     		nextPage = explore(request, response);
-    	}
+    	}else if(action.equals("itemUse")){
+				try {
+					nextPage = itemUse(request, response);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+    	}//
     	
     	try {
 			userInfo(request, response);
@@ -267,7 +273,44 @@ public class GameServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-    	
     	return "Main.jsp";
     }
-}
+    
+    
+    
+    //아이템사용 ++++++ 식량!!!!
+    private String itemUse(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+
+    	int itemNum  = Integer.parseInt(request.getParameter("itemNum"));
+    	int userNum = Integer.parseInt(request.getParameter("userNum"));
+    	int quantity = Integer.parseInt(request.getParameter("quantity"));
+    	
+    	Status user = dao.getUser(userNum);
+    	int health = user.getHealth();  //체력
+    	int maxHealth = user.getMaxHealth();  //최대체력
+    	int stat = dao.getItemPower(itemNum);  //해당아이템 사용을 통해서 나오는 수치.
+    	
+    	//수량 케이스
+    	if(quantity<=1){
+    		dao.deleteItem(itemNum, userNum);
+    	}else{
+    		dao.itemUse(itemNum, userNum);
+    	}
+
+    	//체력 케이스
+    	health = health + stat;
+    	if(health>maxHealth){
+    		health = maxHealth;
+    	}
+    	
+    	dao.updateStatus("health", health, userNum);
+    	return "Main.jsp";
+    }//
+    
+    
+    
+    
+    
+    
+    
+}//마지막
