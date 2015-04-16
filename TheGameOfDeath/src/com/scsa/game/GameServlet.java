@@ -22,16 +22,20 @@ public class GameServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	
-    	String nextPage = "";
+    	String nextPage = "Main.jsp";
     	
-    	nextPage = explore(request, response);
+    	String action = request.getParameter("action");
+    	
+    	if(action != null){
+    		nextPage = explore(request, response);
+    	}
     	
     	try {
 			userInfo(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-			
+    	
 		request.getRequestDispatcher(nextPage).forward(request, response);
     	
     }

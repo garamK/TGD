@@ -97,7 +97,7 @@ public class UserServlet extends HttpServlet {
 		if(userId.equals("Admin")){
 			return "Admin.jsp"; //관리자인 경우 정상처리 했을 때,
 		}else{
-			return "Main.jsp"; // User인 경우 정상처리 했을 때,
+			return "Game.do"; // User인 경우 정상처리 했을 때,
 		}
 		
 	} // 

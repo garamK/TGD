@@ -16,7 +16,7 @@ ${ev.msg}
 </c:forEach>
 </c:if>
 </textarea>
-<a href="Game.do">탐색</a>
+<a href="Game.do?action=explore">탐색</a>
 
 <p>
 유저 정보<br>
