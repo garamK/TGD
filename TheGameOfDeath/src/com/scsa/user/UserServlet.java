@@ -2,6 +2,8 @@ package com.scsa.user;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,11 +12,14 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.scsa.game.GameDao;
+import com.scsa.game.Item;
 
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	UserDao dao = new UserDao(); // 멤버변수 불러서
+	GameDao daoGame = new GameDao(); ////++++ 게임운영용.
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
@@ -29,7 +34,7 @@ public class UserServlet extends HttpServlet {
 		case "LOGIN": nextPage = login(request, response); break;
 		case "LOGOUT": logout(request); break;
 		}//스위치문
-		request.getRequestDispatcher(nextPage).forward(request, response); ///????
+		request.getRequestDispatcher(nextPage).forward(request, response); //
 	}
 	
 	
@@ -79,11 +84,13 @@ public class UserServlet extends HttpServlet {
 			if (dao.loginCheck(userId, pass)) { 
 
 				GameUser gu = dao.search(userId);
+				ArrayList <Item> itemList  = daoGame.getItemList(gu.getUserNum()); //++++
 				
 				HttpSession s = request.getSession();
 				s.setAttribute("userId", userId);
 				s.setAttribute("userNum", gu.getUserNum());
 				s.setAttribute("nick", gu.getNick());
+				s.setAttribute("itemList", itemList); //++++
 				
 				System.out.println(gu);
 			}
