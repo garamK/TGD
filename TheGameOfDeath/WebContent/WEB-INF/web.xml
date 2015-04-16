@@ -44,4 +44,14 @@
     <servlet-name>SurvivorServlet</servlet-name>
     <url-pattern>/Survivor.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MapServlet</display-name>
+    <servlet-name>MapServlet</servlet-name>
+    <servlet-class>com.scsa.game.MapServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MapServlet</servlet-name>
+    <url-pattern>/Map.do</url-pattern>
+  </servlet-mapping>
 </web-app>
