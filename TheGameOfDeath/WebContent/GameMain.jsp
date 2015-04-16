@@ -73,6 +73,16 @@ ${ev.msg}
 	</form>
 	
 	
+	<form action="Game.do?action=decision" method="post">
+	<tr>
+	<th>방어시 행동지침</th>
+	<td><input type="radio" name="decision" value="1" />전투
+	<td><input type="radio" name="decision" value="0" />회피
+	<td><input type="submit" value="아이템사용"/></td>
+	</tr>
+	</form>
+	
+	
 	
 
 </body>

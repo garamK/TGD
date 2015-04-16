@@ -34,19 +34,25 @@ public class GameServlet extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-    	}//
+    	}else if(action != null && action.equals("decision")){
+    		try {
+				nextPage = decision(request, response);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+    	}
     	
     	try {
 			userInfo(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-    	
 		request.getRequestDispatcher(nextPage).forward(request, response);
-    	
     }
     
-    private void userInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+   
+
+	private void userInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException{
     	
     	HttpSession session = request.getSession();
     	int userNum = (int)session.getAttribute("userNum");
@@ -317,7 +323,17 @@ public class GameServlet extends HttpServlet {
     }//
     
     
-    
+    //방어시 행동지침//+++++
+    private String decision(HttpServletRequest request,
+			HttpServletResponse response) throws SQLException {
+    	
+    	HttpSession session = request.getSession();
+    	int userNum = (int)session.getAttribute("userNum");
+    	String decision = request.getParameter("decision");
+    	dao.updateStatus("decision", Integer.parseInt(decision), userNum);
+    	    	
+    	return "Main.jsp";
+	}
     
     
     
