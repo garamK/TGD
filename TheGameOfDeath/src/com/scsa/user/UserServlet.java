@@ -55,7 +55,7 @@ public class UserServlet extends HttpServlet {
 			String userId = mRequest.getParameter("userId").trim();
 			String nick = mRequest.getParameter("nick").trim();
 			String pass = mRequest.getParameter("pass").trim();
-			String image = mRequest.getFilesystemName("image");
+			String image = mRequest.getParameter("image");
 			
 			GameUser gu = new GameUser(0, userId, nick, pass, 0, image);
 			System.out.println(gu); //검증용~~
