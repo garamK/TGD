@@ -10,8 +10,7 @@
 <body>
 	<h1>회원가입</h1>
 	<p>
-	<form enctype="multipart/form-data" action="User.do?action=REGISTER"
-		method="post">
+	<form action="User.do?action=REGISTER" method="post">
 		<table>
 			<tr>
 				<th>아이디</th>
@@ -43,7 +42,7 @@
 					src="images/ch5.png" /><img src="images/ch6.png" /></td>
 			<tr>
 			<tr>
-				<td><input type="radio" name="image" value="ch1.png" />캐릭터1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<td colspan="2"><input type="radio" name="image" value="ch1.png" />캐릭터1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 <input	type="radio" name="image" value="ch2.png" />캐릭터2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 <input	type="radio" name="image" value="ch3.png" />캐릭터3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 <input	type="radio" name="image" value="ch4.png" />캐릭터4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

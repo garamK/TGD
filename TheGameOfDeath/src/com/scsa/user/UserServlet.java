@@ -41,27 +41,17 @@ public class UserServlet extends HttpServlet {
 	protected String register(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
-		String saveDir = "images";
-		String saveFullDir = getServletContext().getRealPath(saveDir);
-		int maxFileSize = 5*1024*1024;
-		String encoding = "utf-8";
+		String userId = request.getParameter("userId").trim();
+		String nick = request.getParameter("nick").trim();
+		String pass = request.getParameter("pass").trim();
+		String image = request.getParameter("image").trim();
 		
-		MultipartRequest mRequest = null;
+		GameUser gu = new GameUser(0, userId, nick, pass, 0, image);
+		System.out.println(gu); //검증용~~
+	
 
 		try {
-			mRequest = new MultipartRequest(request,saveFullDir,maxFileSize,encoding,
-					new DefaultFileRenamePolicy());
-			
-			String userId = mRequest.getParameter("userId").trim();
-			String nick = mRequest.getParameter("nick").trim();
-			String pass = mRequest.getParameter("pass").trim();
-			String image = mRequest.getParameter("image");
-			
-			GameUser gu = new GameUser(0, userId, nick, pass, 0, image);
-			System.out.println(gu); //검증용~~
-
 			dao.save(gu);
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("msg", "등록 중 문제가 발생하였습니다.");
