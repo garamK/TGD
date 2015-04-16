@@ -60,7 +60,14 @@ public class NoticeServlet extends HttpServlet {
 		}// end if
 
 		System.out.println("다음페이지: " + nextPage); // 디버깅해줄때 필요 ㅋㅋ
-		request.getRequestDispatcher(nextPage).forward(request, response);
+		
+		if(nextPage.equals("Index.jsp")){
+			request.getRequestDispatcher("Index.jsp").forward(request, response);
+			return;
+		}
+		
+    	request.setAttribute("nextPage", nextPage);
+		request.getRequestDispatcher("main.jsp").forward(request, response);
 	}
 
 	//저장하기

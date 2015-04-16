@@ -22,7 +22,7 @@ public class GameServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	
-    	String nextPage = "Main.jsp";
+    	String nextPage = "";
     	
     	String action = request.getParameter("action");
     	
@@ -47,7 +47,10 @@ public class GameServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher(nextPage).forward(request, response);
+    	
+    	
+    	request.setAttribute("nextPage", nextPage);
+		request.getRequestDispatcher("main.jsp").forward(request, response);
     }
     
    
@@ -285,7 +288,7 @@ public class GameServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-    	return "Main.jsp";
+    	return "GameMain.jsp";
     }
     
     
@@ -319,7 +322,7 @@ public class GameServlet extends HttpServlet {
     	}
     	
     	dao.updateStatus("health", health, userNum);
-    	return "Main.jsp";
+    	return "GameMain.jsp";
     }//
     
     
@@ -332,7 +335,7 @@ public class GameServlet extends HttpServlet {
     	String decision = request.getParameter("decision");
     	dao.updateStatus("decision", Integer.parseInt(decision), userNum);
     	    	
-    	return "Main.jsp";
+    	return "GameMain.jsp";
 	}
     
     
