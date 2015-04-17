@@ -67,4 +67,24 @@
   <listener>
     <listener-class>com.scsa.game.GameListner</listener-class>
   </listener>
+  <servlet>
+    <description></description>
+    <display-name>UserManageServlet</display-name>
+    <servlet-name>UserManageServlet</servlet-name>
+    <servlet-class>com.scsa.game.UserManageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserManageServlet</servlet-name>
+    <url-pattern>/UserManage.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserListServlet</display-name>
+    <servlet-name>UserListServlet</servlet-name>
+    <servlet-class>com.scsa.game.UserListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserListServlet</servlet-name>
+    <url-pattern>/UserList.do</url-pattern>
+  </servlet-mapping>
 </web-app>
