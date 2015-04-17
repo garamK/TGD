@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<h1>관리자용 회원관리 목록</h1>
+<h1>시즌별 회원관리 목록</h1>
 
 <table>
 	<tr>
@@ -18,12 +18,12 @@
 	
 	<c:forEach var="user" items="${list}">	
 	<tr>
-	<td>${user.userNum}</td><td>${user.userId}</td><td>${user.nick}</td><td>${user.play}</td><td><a href="user.do?action=DELETE&userNum=${user.userNum}">강퇴시킬거다</a></td>
+	<td>${user.userNum}</td><td>${user.userId}</td><td>${user.nick}</td><td>${user.play}</td><td><a href="UserList.do?action=DELETE&userId=${user.userId}">강퇴시킬거다</a></td>
 	</tr>
 	</c:forEach>
 </table>
 <p>
-<a href="Main.jsp">메인페이지</a>
+<a href="Admin.jsp">관리자 페이지</a>
 </body>
 </html>
 

@@ -16,6 +16,8 @@
 <a href="Admin.do?action=START">시즌시작</a>
 <a href="Admin.do?action=END">시즌종료</a>
 
+<a href="UserList.do?action=LIST">회원리스트</a>
+
 <a href="User.do?action=LOGOUT">로그아웃</a>
 </body>
 </html>

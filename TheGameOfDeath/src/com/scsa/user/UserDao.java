@@ -160,10 +160,18 @@ public class UserDao {
 		
 		try{
 			con = DBUtil.getConnection();
-			String sql = "delete from GameUser where userId = ?";
+			String sql = "delete from Status where UserNum = (select UserNum from GameUser where UserId=?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, userId);
 			ps.executeUpdate();
+			
+			DBUtil.close(ps);
+			
+			 sql = "delete from GameUser where userId = ?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1, userId);
+				ps.executeUpdate();
+			
 		}finally{
 			DBUtil.close(ps);
 			DBUtil.close(con);
