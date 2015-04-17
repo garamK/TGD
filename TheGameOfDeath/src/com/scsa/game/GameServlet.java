@@ -270,10 +270,24 @@ public class GameServlet extends HttpServlet {
 							request.setAttribute("msg", "음식을 발견했습니다.");
 							
 							ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
+							boolean itemExist = false;
+							for(Item it : itemList){
+								if(it.getItemNum() == item.getItemNum()){
+									itemExist = true;
+									it.setQuantity(it.getQuantity()+1);
+									dao.itemGet(item.getItemNum(), user.getUserNum());
+									break;
+								}
+							}
 							
+							if(!itemExist){
+								dao.insertUserItem(item.getItemNum(), user.getUserNum());
+							}
+							
+							itemList  = dao.getItemList(user.getUserNum());
+					    	session.setAttribute("itemList", itemList);
 							
 						}
-						
 						
 					}
 					else{ // 아이템이 나오지 않음
@@ -301,10 +315,20 @@ public class GameServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	int userNum = (int)session.getAttribute("userNum");
-    	
     	int itemNum  = Integer.parseInt(request.getParameter("itemNum"));
-    	int quantity = Integer.parseInt(request.getParameter("quantity"));
+    	ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
     	
+    	int quantity = 1;
+    	
+    	for(Item it : itemList){
+    		if(it.getItemNum() == itemNum){
+    			quantity = it.getQuantity();
+    			break;
+    		}
+    	}
+    	
+    	
+    	System.out.println("itemNum : " + itemNum + " 수량 : " + quantity);
     	Status user = dao.getUser(userNum);
     	int health = user.getHealth();  //체력
     	int maxHealth = user.getMaxHealth();  //최대체력
@@ -317,12 +341,14 @@ public class GameServlet extends HttpServlet {
     		dao.itemUse(itemNum, userNum);
     	}
     	
-    	
     	//체력 케이스
     	health = health + stat;
     	if(health>maxHealth){
     		health = maxHealth;
     	}
+    	
+    	itemList  = dao.getItemList(userNum);
+    	session.setAttribute("itemList", itemList);
     	
     	dao.updateStatus("health", health, userNum);
     	return "GameMain.jsp";
