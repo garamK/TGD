@@ -64,4 +64,7 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/Admin.do</url-pattern>
   </servlet-mapping>
+  <listener>
+    <listener-class>com.scsa.game.GameListner</listener-class>
+  </listener>
 </web-app>

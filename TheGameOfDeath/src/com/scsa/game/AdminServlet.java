@@ -16,11 +16,25 @@ public class AdminServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
     	
-    	try {
-			dao.gameStart();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+    	String action = request.getParameter("action");
+    	
+    	if(action != null){
+    		
+    		try {
+    			if(action.equals("START")){
+    				dao.gameStart();
+    			}
+    			else{
+    				dao.gameEnd();
+    			}
+    			request.getRequestDispatcher("Admin.jsp").forward(request, response);
+    		} catch (SQLException e) {
+    			e.printStackTrace();
+    		}
+    	}
+    	else{
+    		request.getRequestDispatcher("Admin.jsp").forward(request, response);
+    	}
     	
     }
 

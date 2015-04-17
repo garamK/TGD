@@ -388,7 +388,7 @@ public class GameDao {
 		
 		try{
 			con = DBUtil.getConnection();
-			String sql = "insert into userItem values(ui_seq.nextval, ?, ?, 1);";
+			String sql = "insert into userItem values(ui_seq.nextval, ?, ?, 1)";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, userNum);
 			ps.setInt(2, itemNum);
@@ -426,6 +426,30 @@ public class GameDao {
 		}
 		
 		return result;
+	}
+	
+	public void timerJob() throws SQLException{
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "update status set stamina = stamina + 1 where stamina < 20";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			
+			DBUtil.close(ps);
+			
+			sql = "update status set health = health - 1 where health > 2";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			
+		}finally{
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
 	}
 	
 }//

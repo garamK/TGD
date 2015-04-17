@@ -76,6 +76,14 @@ public class GameServlet extends HttpServlet {
 			// 현재 유저의 정보 로드
     		Status user = dao.getUser((int)session.getAttribute("userNum")); 
     		
+    		if(user.getStamina() <= 0){
+    			
+    			request.setAttribute("msg", "체력이 부족하다... 더이상 돌아다닐 수 없어...");
+    			return "GameMain.jsp";
+    		}
+    		
+    		dao.updateStatus("stamina", user.getStamina()-1, user.getUserNum());
+    		
     		// 같은 지역에 있는 유저 정보 로드
 			ArrayList<Status> userList = dao.getUserList(user.getLocation()); 
 			int peopleNum = userList.size();
@@ -107,6 +115,8 @@ public class GameServlet extends HttpServlet {
 						if(countUser.getDecision() == 1){ // 상대 성향도 전투적인 경우
 							// 전투 시작
 							// 발견자 측 공격
+							boolean finish = false;
+							
 							for(int i=0; i<3; i++){
 								dice = ran.nextInt(10);
 								damage = powerUser + dice;
@@ -114,7 +124,7 @@ public class GameServlet extends HttpServlet {
 								dice = ran.nextInt(10);
 								if(dice<3){
 									damage = 0;
-									msg = user.getNick() +"의 공격은 빗나갔다.";
+									msg = user.getNick() +"의 공격은 빗나갔다...";
 									
 								}
 								else{
@@ -132,10 +142,11 @@ public class GameServlet extends HttpServlet {
 								if(countUser.getHealth() <= 0){
 									dao.dead(countUser.getUserNum());
 									dao.updateStatus("kill", user.getKill()+1, user.getUserNum());
-									msg = user.getNick() +"은(는) " + countUser.getNick()+"(을)를 살해했다!";
+									msg = user.getNick() +"은(는) " + countUser.getNick()+"에게 승리했다!!";
 									ev = new Event(user.getUserNum(), countUser.getUserNum(), msg, eventGroup);
 									dao.setEvent(ev);
 									eventList.add(ev);
+									finish = true;
 									break;
 								}
 								else{
@@ -150,7 +161,7 @@ public class GameServlet extends HttpServlet {
 								dice = ran.nextInt(10);
 								if(dice<3){
 									damage = 0;
-									msg = countUser.getNick() +"의 공격은 빗나갔다.";
+									msg = countUser.getNick() +"의 공격은 빗나갔다...";
 								}
 								else{
 									msg = countUser.getNick() +"은(는) " + user.getNick()+"에게 " + damage +
@@ -167,10 +178,11 @@ public class GameServlet extends HttpServlet {
 								if(user.getHealth() <= 0){
 									dao.dead(user.getUserNum());
 									dao.updateStatus("kill", countUser.getKill()+1, countUser.getUserNum());
-									msg = countUser.getNick() +"은(는) " + user.getNick()+"(을)를 살해했다!";
+									msg = countUser.getNick() +"은(는) " + user.getNick()+"에게 승리했다!!";
 									ev = new Event(user.getUserNum(), countUser.getUserNum(), msg, eventGroup);
 									dao.setEvent(ev);
 									eventList.add(ev);
+									finish = true;
 									break;
 								}
 								else{
@@ -178,6 +190,14 @@ public class GameServlet extends HttpServlet {
 								}
 								
 							}
+							
+							if(!finish){
+								eventList.add(new Event(user.getUserNum(), countUser.getUserNum(), 
+										"오늘은 승부를 내기 어려울 것 같다.", eventGroup));
+								eventList.add(new Event(user.getUserNum(), countUser.getUserNum(), 
+										user.getNick() +"와 " + countUser.getNick()+"은(는) 다음을 기약하며 자리를 떠났다.", eventGroup));
+							}
+							
 							request.setAttribute("eventList", eventList);
 							
 						}
@@ -228,7 +248,8 @@ public class GameServlet extends HttpServlet {
 					}
 					else{ // 유저 성향이 회피적인 경우
 						// 도망, 별다른 일이 일어나지 않음
-						request.setAttribute("msg", "당신은 들키지 않게 조용히 도망갑니다.");
+						eventList.add(new Event(user.getUserNum(), countUser.getUserNum(), "당신은 들키지 않게 조용히 도망갑니다.", eventGroup));
+						request.setAttribute("eventList", eventList);
 					}
 				}
 				else{ // 자기 자신이 상대로 뽑혔을 경우
@@ -309,7 +330,6 @@ public class GameServlet extends HttpServlet {
     }
     
     
-    
     //아이템사용 ++++++ 식량!!!!
     private String itemUse(HttpServletRequest request, HttpServletResponse response) throws SQLException{
     	
@@ -318,7 +338,7 @@ public class GameServlet extends HttpServlet {
     	int itemNum  = Integer.parseInt(request.getParameter("itemNum"));
     	ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
     	
-    	int quantity = 1;
+    	int quantity = 0;
     	
     	for(Item it : itemList){
     		if(it.getItemNum() == itemNum){
@@ -327,7 +347,6 @@ public class GameServlet extends HttpServlet {
     		}
     	}
     	
-    	
     	System.out.println("itemNum : " + itemNum + " 수량 : " + quantity);
     	Status user = dao.getUser(userNum);
     	int health = user.getHealth();  //체력
@@ -335,9 +354,13 @@ public class GameServlet extends HttpServlet {
     	int stat = dao.getItemPower(itemNum);  //해당아이템 사용을 통해서 나오는 수치.
     	
     	//수량 케이스
-    	if(quantity<=1){
+    	if(quantity == 1){
     		dao.deleteItem(itemNum, userNum);
-    	}else{
+    	}
+    	else if(quantity <= 0){
+    		return "GameMain.jsp";
+    	}
+    	else{
     		dao.itemUse(itemNum, userNum);
     	}
     	
@@ -350,10 +373,10 @@ public class GameServlet extends HttpServlet {
     	itemList  = dao.getItemList(userNum);
     	session.setAttribute("itemList", itemList);
     	
+    	request.setAttribute("msg", "가지고 있던 음식을 먹었다. 체력이 회복되었다.");
     	dao.updateStatus("health", health, userNum);
     	return "GameMain.jsp";
     }//
-    
     
     //방어시 행동지침//+++++
     private String decision(HttpServletRequest request,
@@ -366,8 +389,5 @@ public class GameServlet extends HttpServlet {
     	    	
     	return "GameMain.jsp";
 	}
-    
-    
-    
     
 }//마지막

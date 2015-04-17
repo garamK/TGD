@@ -11,9 +11,9 @@
 </head>
 
 <body>
-	<h1>공지사항</h1>
+	<h4>공지사항</h4>
 	<c:if test="${sessionScope.userId eq 'Admin'}">
-		<table border='1'>
+		<table border='1' class="table">
 			<tr>
 				<th width="30%">번호</th>
 				<th width="30%">제 목</th>
@@ -36,14 +36,12 @@
 			</c:forEach>
 		</table>
 		<a href="Notice.do?action=INPUT">공지사항 등록</a>
-		<a href="Main.jsp">메인페이지</a>
-
 	</c:if>
 
 
 
 	<c:if test="${sessionScope.userId ne 'Admin'}">
-		<table border='1'>
+		<table border='1' class="table">
 			<tr>
 				<th width="30%">번호</th>
 				<th width="30%">제 목</th>
@@ -61,7 +59,6 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="Main.jsp">메인페이지</a>
 
 	</c:if>
 

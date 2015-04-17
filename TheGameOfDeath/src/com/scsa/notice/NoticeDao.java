@@ -17,7 +17,6 @@ public class NoticeDao {
 	private String content; //내용
 	private String ndate; //날짜
 	*/
-
 	
 	// 저장하기(공지등록) //관리자용
 	public void save(Notice n) throws SQLException {
@@ -74,7 +73,8 @@ public class NoticeDao {
 
 		try {
 			con = DBUtil.getConnection();
-			String q = "Select noticeNum, title, content, to_char(ndate, 'yy.mm.dd') nd from Notice";
+			String q = "Select noticeNum, title, content, to_char(ndate, 'yy.mm.dd') nd from Notice"
+					+ " order by noticeNum desc";
 			ps = con.prepareStatement(q);
 			rs = ps.executeQuery();
 

@@ -71,8 +71,8 @@ public class NoticeServlet extends HttpServlet {
 	}
 
 	//저장하기
-		protected String save(HttpServletRequest request,
-				HttpServletResponse response) throws ServletException, IOException {
+		protected String save(HttpServletRequest request, HttpServletResponse response) 
+				throws ServletException, IOException {
 		
 			//String noticeNum = request.getParameter("noticeNum");
 			String title = request.getParameter("title");
@@ -97,8 +97,8 @@ public class NoticeServlet extends HttpServlet {
 
 		
 		//리스트보여주기
-		protected String list(HttpServletRequest request,
-				HttpServletResponse response) throws ServletException, IOException {
+		protected String list(HttpServletRequest request, HttpServletResponse response) 
+				throws ServletException, IOException {
 			List<Notice> list = null; // 리스트를 꺼내준다.
 			try {
 				list = dao.search();
@@ -113,8 +113,8 @@ public class NoticeServlet extends HttpServlet {
 		
 		
 		//인덱스에 리스트보여주기
-		protected String index(HttpServletRequest request,
-				HttpServletResponse response) throws ServletException, IOException {
+		protected String index(HttpServletRequest request, HttpServletResponse response) 
+				throws ServletException, IOException {
 			List<Notice> list = null; // 리스트를 꺼내준다.
 			try {
 				list = dao.search();
@@ -128,8 +128,8 @@ public class NoticeServlet extends HttpServlet {
 		} //list()
 
 		//삭제
-		protected String delete(HttpServletRequest request,
-				HttpServletResponse response) throws ServletException, IOException {
+		protected String delete(HttpServletRequest request,	HttpServletResponse response) 
+				throws ServletException, IOException {
 
 			String n = request.getParameter("noticeNum");
 			try {
