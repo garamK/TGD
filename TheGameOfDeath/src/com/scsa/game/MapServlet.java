@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.scsa.user.Status;
+
 
 public class MapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,6 +28,28 @@ public class MapServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
+		
+		Status user = null; 
+		
+		try {
+			user = dao.getUser((int)session.getAttribute("userNum"));
+			
+			if(user.getStamina() <= 1){
+				
+				request.setAttribute("msg", "행동력이 부족하다... 더이상 돌아다닐 수 없어...");
+				
+				request.setAttribute("nextPage", "Map.jsp");
+				request.getRequestDispatcher("Main.jsp").forward(request, response);
+				
+				return;
+			}
+			user.setStamina(user.getStamina()-2);
+			
+			dao.updateStatus("stamina", user.getStamina(), user.getUserNum());
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
 		
 		String temp = request.getParameter("nextLocation");
 		
@@ -48,6 +72,7 @@ public class MapServlet extends HttpServlet {
 			}
 		}
 		
+    	session.setAttribute("userInfo", user);
 		request.setAttribute("nextPage", "Map.jsp");
 		request.getRequestDispatcher("Main.jsp").forward(request, response);
 		

@@ -15,7 +15,12 @@
 
 	function popUp(num) {
 		window.open("Notice.do?action=VIEW&noticeNum=" + num, "공지상세보기",
-				"top=200, left=200, width=600, height=600, scrollbar=yes");
+				"top=200, left=200, width=500, height=150, scrollbar=yes");
+	}
+	
+	function lSubmit() {
+
+		lForm.submit();
 	}
 </script>
 
@@ -54,17 +59,17 @@
 		<td width="100px">
 		</td>
 		<td>
-			<form action="User.do?action=LOGIN" method="post">
+			<form action="User.do?action=LOGIN" method="post" id="lForm">
 				<table class="table">
 					<tr>
-						<th >아이디</th>
-						<td><input type="text" id="userId" name="userId" /></td>
-						<td><input type="submit" value="로그인" /></td>
+						<td><h6>아이디</h6></td>
+						<td><input type="text" id="userId" name="userId" class="form-control"/></td>
+						<td><a href="javascript:lSubmit()"	class="btn btn-default">로그인</a> </td>
 					</tr>
 					<tr>
-						<th >비밀번호</th>
-						<td><input type="password" id="pass" name="pass" /></td>
-						<td><input type="button" value="회원가입" onclick="check()" /></td>
+						<td><h6>비밀번호</h6></td>
+						<td><input type="password" id="pass" name="pass" class="form-control"/></td>
+						<td><a href="javascript:check()"	class="btn btn-default">회원가입</a> </td>
 					</tr>
 				</table>
 			</form>

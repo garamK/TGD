@@ -60,7 +60,7 @@ public class GameServlet extends HttpServlet {
     	int userNum = (int)session.getAttribute("userNum");
     	Status user = dao.getUser(userNum); 
     	String weapon = dao.getItemName(user.getItemNum());
-    	request.setAttribute("userInfo", user);
+    	session.setAttribute("userInfo", user);
     	request.setAttribute("weapon", weapon);
     	
     	ArrayList <Item> itemList  = dao.getItemList(userNum);
@@ -335,7 +335,15 @@ public class GameServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	int userNum = (int)session.getAttribute("userNum");
-    	int itemNum  = Integer.parseInt(request.getParameter("itemNum"));
+    	
+    	String in = request.getParameter("itemNum");
+    	
+    	if(in == null){
+    		request.setAttribute("msg", "음식을 선택해주세요.");
+        	return "GameMain.jsp";
+    	}
+    	
+    	int itemNum  = Integer.parseInt(in);
     	ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
     	
     	int quantity = 0;
@@ -384,9 +392,16 @@ public class GameServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	int userNum = (int)session.getAttribute("userNum");
-    	String decision = request.getParameter("decision");
-    	dao.updateStatus("decision", Integer.parseInt(decision), userNum);
-    	    	
+    	int decision = Integer.parseInt(request.getParameter("decision"));
+    	dao.updateStatus("decision", decision, userNum);
+    	
+    	if(decision == 1){
+    		request.setAttribute("msg", "행동 지침이 전투로 변경되었습니다.");
+    	}
+    	else{
+    		request.setAttribute("msg", "행동 지침이 회피로 변경되었습니다.");
+    	}
+    	
     	return "GameMain.jsp";
 	}
     

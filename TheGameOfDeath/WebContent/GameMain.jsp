@@ -26,7 +26,7 @@
 
 		<tr>
 			<td align=center width="500" height="500">
-				<textarea rows="20"	cols="50" readonly="readonly">
+				<textarea rows="20"	cols="50" readonly="readonly" class="form-control">
 <c:if test="${not empty msg}">${msg}</c:if>
 <c:if test="${not empty eventList}"> 
 <c:forEach var="ev" items="${eventList}">
@@ -35,8 +35,9 @@
 </c:if>
 				</textarea>
 			</td>
-
-
+			<td width="50">
+			
+			</td>
 			<td align=center>
 				<table align=center>
 					<tr>
@@ -94,7 +95,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td colspan="2">
 				<form action="Game.do?action=itemUse" method="post" id="iForm">
 					<table align="center">
 						<tr>

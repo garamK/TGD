@@ -5,17 +5,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>공지사항</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="http://bootswatch.com/assets/css/bootswatch.min.css">
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-
-
-
+<center>
 	<c:if test="${empty userId}">
-	<h1> 공지상세화면</h1>
 	<table border='1'>
-
 	<tr>
 		<th>번호</th>
 		<td width="90%">${notice.noticeNum}</td>
@@ -34,7 +33,6 @@
 		<td>${notice.content}</td>
 	</tr>
 </table>
-	<h3>룰루랄라게임게임</h3>
 	</c:if>
 	
 	
@@ -69,6 +67,6 @@
 		<a href="Main.jsp">메인페이지</a>
 	
 	</c:if>
-
+</center>
 </body>
 </html>

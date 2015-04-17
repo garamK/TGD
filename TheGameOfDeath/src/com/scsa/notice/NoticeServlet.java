@@ -47,7 +47,8 @@ public class NoticeServlet extends HttpServlet {
 				break;
 			case "VIEW":
 				nextPage = view(request, response);
-				break;
+				request.getRequestDispatcher(nextPage).forward(request, response);
+				return;
 			case "UPDATE":
 				nextPage=update(request, response);
 				break;

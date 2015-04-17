@@ -39,10 +39,18 @@
 			</td>
 		</tr>
 		<tr>
+			<td>
+				<table align="right">
+					<tr><th>행동력 </th><td align="center" width='70px'> ${sessionScope.userInfo.stamina}</td></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
 			<td align="center"><jsp:include page="${nextPage}" /></td>
 		</tr>
-
 	</table>
+	
 </center>
+
 </body>
 </html>
