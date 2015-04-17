@@ -41,8 +41,6 @@
 		<tr><td colspan=2><a href="Game.do?action=explore" class="btn btn-default">탐색</a>
 		<a href="Game.do?action=explore" class="btn btn-default">아이템사용</a>
 		<a href="Game.do?action=explore" class="btn btn-default">행동지침</a></td></tr>
-		
-		
 		</table>
 </td>
 

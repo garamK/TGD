@@ -45,24 +45,21 @@
 	<c:if test="${sessionScope.userId ne 'Admin'}">
 		<table border='1'>
 			<tr>
-				<th width="30%">번호</th>
-				<th width="30%">제 목</th>
-				<th width="100%">내 용</th>
-				<th width="100%">날 짜</th>
+				<th width="100px">번호</th>
+				<th width="600px">제 목</th>
+				<th width="1200px">내 용</th>
+				<th width="300px">날 짜</th>
 			</tr>
 
 			<c:forEach var="nn" items="${list}">
 				<tr>
 					<td>${nn.noticeNum}</td>
-
 					<td>${nn.title}</td>
 					<td>${nn.content}</td>
 					<td>${nn.ndate}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="Main.jsp">메인페이지</a>
-
 	</c:if>
 
 </body>
