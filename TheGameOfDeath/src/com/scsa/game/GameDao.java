@@ -53,7 +53,7 @@ public class GameDao {
 			String sql = "select s.userNum, userId, nick, image, maxHealth, "
 					+ "health, power, stamina, kill, death, "
 					+ "location, decision, itemNum "
-					+ "from status s, gameuser gu where s.userNum = gu.userNum order by kill - death desc";
+					+ "from status s, gameuser gu where s.userNum = gu.userNum order by kill - death desc, kill";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()){
@@ -311,7 +311,7 @@ public class GameDao {
 		
 		try{
 			con = DBUtil.getConnection();
-			String sql = "update status set death = death+1, stamina = 10, health = 210 where userNum = ?";
+			String sql = "update status set death = death+1, stamina = 100, health = 210 where userNum = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, userNum);
 			
@@ -435,9 +435,10 @@ public class GameDao {
 		
 		try{
 			con = DBUtil.getConnection();
-			String sql = "update status set stamina = stamina + 1 where stamina < 20";
+			String sql = "update status set stamina = stamina + 100 ";
 			ps = con.prepareStatement(sql);
 			ps.executeUpdate();
+			//where stamina < 20
 			
 			DBUtil.close(ps);
 			

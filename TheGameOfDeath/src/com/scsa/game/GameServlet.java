@@ -25,6 +25,8 @@ public class GameServlet extends HttpServlet {
     	String nextPage = "GameMain.jsp";
     	
     	HttpSession session = request.getSession();
+    	
+    	int userNum = (int)session.getAttribute("userNum");
 		
 		try {
 			Status user = dao.getUser((int)session.getAttribute("userNum"));
@@ -237,10 +239,13 @@ public class GameServlet extends HttpServlet {
 							}
 							
 							if(!finish){
-								eventList.add(new Event(user.getUserNum(), countUser.getUserNum(), 
-										"오늘은 승부를 내기 어려울 것 같다.", eventGroup));
-								eventList.add(new Event(user.getUserNum(), countUser.getUserNum(), 
-										user.getNick() +"와 " + countUser.getNick()+"은(는) 다음을 기약하며 자리를 떠났다.", eventGroup));
+								Event ev = new Event(user.getUserNum(), countUser.getUserNum(), "오늘은 승부를 내기 어려울 것 같다.", eventGroup);
+								eventList.add(ev);
+								dao.setEvent(ev);
+								
+								ev = new Event(user.getUserNum(), countUser.getUserNum(), user.getNick() +"와 " + countUser.getNick()+"은(는) 다음을 기약하며 자리를 떠났다.", eventGroup);
+								eventList.add(ev);
+								dao.setEvent(ev);
 							}
 							
 							request.setAttribute("eventList", eventList);
@@ -262,7 +267,7 @@ public class GameServlet extends HttpServlet {
 								dice = ran.nextInt(10);
 								if(dice<3){
 									damage = 0;
-									msg = countUser.getNick() +"은(는) " + user.getNick()+"의 공격을 피했다.";
+									msg = countUser.getNick() +"은(는) " + user.getNick()+"의 공격을 피하고 도망갔다.";
 								}
 								else{
 									msg = user.getNick() +"은(는) " + countUser.getNick()+"에게 " + damage +
@@ -284,6 +289,10 @@ public class GameServlet extends HttpServlet {
 									eventList.add(ev);
 								}
 								else{
+									msg = countUser.getNick()+"(은)는 도망갔다.";
+									ev = new Event(user.getUserNum(), countUser.getUserNum(), msg, eventGroup);
+									dao.setEvent(ev);
+									eventList.add(ev);
 									dao.updateStatus("health", countUser.getHealth(), countUser.getUserNum());
 								}
 								

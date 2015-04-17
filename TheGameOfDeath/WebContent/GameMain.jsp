@@ -86,7 +86,7 @@
 						<td><br /></td>
 					</tr>
 					<tr>
-						<td colspan=2>
+						<td colspan="2">
 							<a href="Game.do?action=explore" class="btn btn-default">탐색</a> 
 							<a href="javascript:iSubmit()"	class="btn btn-default">아이템사용</a> 
 							<a href="javascript:dSubmit()"	class="btn btn-default">행동지침</a></td>
@@ -94,15 +94,22 @@
 				</table>
 			</td>
 		</tr>
-		<tr>
+		<tr align="center">
+			<td>
+				<form action="Game.do?action=decision" method="post" id="dForm">
+					행동지침&nbsp;&nbsp;&nbsp; 
+					<input type="radio" name="decision" value="1" /> 전투&nbsp;&nbsp; 
+					<input type="radio" name="decision"value="0" /> 회피&nbsp;
+				</form>
+			</td>
 			<td colspan="2">
 				<form action="Game.do?action=itemUse" method="post" id="iForm">
 					<table align="center">
 						<tr>
-							<th width="100">선택</th>
-							<th width="100">아이템</th>
-							<th width="100">수량</th>
-							<th width="100">체력</th>
+							<th width="70">선택</th>
+							<th width="70">아이템</th>
+							<th width="70">수량</th>
+							<th width="70">체력</th>
 						</tr>
 
 						<c:forEach var="i" items="${itemList}">
@@ -122,13 +129,7 @@
 					</table>
 				</form>
 			</td>
-			<td>
-				<form action="Game.do?action=decision" method="post" id="dForm">
-					행동지침&nbsp;&nbsp;&nbsp; 
-					<input type="radio" name="decision" value="1" /> 전투&nbsp;&nbsp; 
-					<input type="radio" name="decision"value="0" /> 회피&nbsp;
-				</form>
-			</td>
+			
 		</tr>
 		<tr><td colspan="2"><br><br></td></tr>
 	</table>
