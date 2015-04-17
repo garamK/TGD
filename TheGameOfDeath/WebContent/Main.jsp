@@ -5,11 +5,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>The Game of Death</title>
 </head>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="http://bootswatch.com/assets/css/bootswatch.min.css">
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function getTime(){
+		
+		var fr = document.getElementById("ftime");
+		var d = new Date();
+		d.fromFormattedString(fr.value, "H:m:s");
+		
+		var cur = new Date();
+		
+		alert(cur-d);
+	}
+</script>
 <body>
 <center>
 	<table width="75%" height="100%">
@@ -41,7 +54,8 @@
 		<tr>
 			<td>
 				<table align="right">
-					<tr><th>행동력 </th><td align="center" width='70px'> ${sessionScope.userInfo.stamina}</td></tr>
+					<tr><th>행동력 </th><td align="center" width='100px'> ${sessionScope.userInfo.stamina}</td></tr>
+					<tr><th>다음충전시간</th><td align="center">${time}</td></tr>
 				</table>
 			</td>
 		</tr>

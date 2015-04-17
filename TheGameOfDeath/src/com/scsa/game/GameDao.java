@@ -311,7 +311,7 @@ public class GameDao {
 		
 		try{
 			con = DBUtil.getConnection();
-			String sql = "update status set death = death+1, stamina = 0, health = 200 where userNum = ?";
+			String sql = "update status set death = death+1, stamina = 10, health = 210 where userNum = ?";
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, userNum);
 			
@@ -450,6 +450,41 @@ public class GameDao {
 			DBUtil.close(con);
 		}
 		
+	}
+	
+	public ArrayList<Event> getOldLog(int userNum) throws SQLException{
+		
+		ArrayList<Event> list = new ArrayList<Event>();
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try{
+			con = DBUtil.getConnection();
+			String sql = "select EVENTGROUP, message from event where user2 = ? and checked = 0"
+					+ " order by EVENTGROUP, EVENTNUM";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userNum);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				list.add(new Event(rs.getString(2), rs.getInt(1)));
+			}
+			
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			
+			sql = "update event set checked = 1 where user2 = ? and checked = 0";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, userNum);
+			ps.executeUpdate();
+			
+		}finally{
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		
+		return list;
 	}
 	
 }//

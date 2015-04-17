@@ -24,6 +24,20 @@ public class GameServlet extends HttpServlet {
     	
     	String nextPage = "GameMain.jsp";
     	
+    	HttpSession session = request.getSession();
+		
+		try {
+			Status user = dao.getUser((int)session.getAttribute("userNum"));
+			
+			if(user == null){
+				request.setAttribute("msg", "다음 시즌 시작을 기다려주세요");
+				request.getRequestDispatcher("Error.jsp").forward(request, response);
+			}
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} 
+    	
     	String action = request.getParameter("action");
     	
     	if(action != null && action.equals("explore")){
@@ -44,6 +58,7 @@ public class GameServlet extends HttpServlet {
     	
     	try {
 			userInfo(request, response);
+			getOldLog(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +67,37 @@ public class GameServlet extends HttpServlet {
 		request.getRequestDispatcher("Main.jsp").forward(request, response);
     }
     
-   
+    private void getOldLog(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+    	
+    	ArrayList<Event> eventList = (ArrayList<Event>) request.getAttribute("eventList");
+    	
+    	if(eventList == null){
+    		eventList = new ArrayList<Event>();
+    	}
+    	
+    	HttpSession session = request.getSession();
+    	int userNum = (int)session.getAttribute("userNum");
+    	ArrayList<Event> oldList = dao.getOldLog(userNum);
+    	
+    	if(oldList.size() > 0){
+    		eventList.add(new Event("======================"));
+        	eventList.add(new Event("새로운 Log가 있습니다."));
+        	eventList.add(new Event("======================"));
+        	
+    		for(int i=0; i<oldList.size(); i++){
+    			
+    			eventList.add(oldList.get(i));
+    			
+    			if(i < oldList.size()-1 && oldList.get(i).getGroup() != oldList.get(i+1).getGroup()){
+    				eventList.add(new Event("======================"));
+    	        	eventList.add(new Event("새로운 Log가 있습니다."));
+    	        	eventList.add(new Event("======================"));
+    			}
+    		}
+    	}
+    	
+    	request.setAttribute("eventList", eventList);
+    }
 
 	private void userInfo(HttpServletRequest request, HttpServletResponse response) throws SQLException{
     	
@@ -391,8 +436,16 @@ public class GameServlet extends HttpServlet {
 			HttpServletResponse response) throws SQLException {
     	
     	HttpSession session = request.getSession();
+    	
+    	String dc = request.getParameter("decision");
+    	
+    	if(dc == null){
+    		request.setAttribute("msg", "행동 지침을 설정해주세요");
+    		return "GameMain.jsp";
+    	}
+    	
     	int userNum = (int)session.getAttribute("userNum");
-    	int decision = Integer.parseInt(request.getParameter("decision"));
+    	int decision = Integer.parseInt(dc);
     	dao.updateStatus("decision", decision, userNum);
     	
     	if(decision == 1){

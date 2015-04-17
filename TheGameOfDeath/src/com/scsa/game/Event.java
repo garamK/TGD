@@ -9,8 +9,16 @@ public class Event {
 	
 	public Event(){}
 	
+	public Event(String msg){
+		this.msg = msg;
+	}
+	
+	public Event(String msg, int group) {
+		this.msg = msg;
+		this.group = group;
+	}
+
 	public Event(int user1, int user2, String msg, int group) {
-		super();
 		this.user1 = user1;
 		this.user2 = user2;
 		this.msg = msg;

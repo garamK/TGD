@@ -1,6 +1,7 @@
 package com.scsa.game;
 
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,7 +33,7 @@ public class GameListner implements ServletContextListener {
 		
 		Timer jobScheduler = new Timer();
 		
-		jobScheduler.scheduleAtFixedRate(job, 1000, 1000*60*10);
+		jobScheduler.scheduleAtFixedRate(job, 1000, 1000*60*3);
 		
     }
 	
@@ -40,7 +41,14 @@ public class GameListner implements ServletContextListener {
 
     	public void run() {
     		
-    		sc.setAttribute("time", "");
+    		Calendar cal = Calendar.getInstance();
+    		cal.add (Calendar.MINUTE, 3);
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            int min = cal.get(Calendar.MINUTE);
+            int sec = cal.get(Calendar.SECOND);
+    		System.out.println(hour+":"+min+":"+sec);
+    		
+    		sc.setAttribute("time", hour+":"+min+":"+sec);
     		
     		GameDao dao = new GameDao();
     		

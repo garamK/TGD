@@ -124,7 +124,7 @@
 			</td>
 			<td>
 				<form action="Game.do?action=decision" method="post" id="dForm">
-					방어시 행동지침&nbsp;&nbsp;&nbsp; 
+					행동지침&nbsp;&nbsp;&nbsp; 
 					<input type="radio" name="decision" value="1" /> 전투&nbsp;&nbsp; 
 					<input type="radio" name="decision"value="0" /> 회피&nbsp;
 				</form>

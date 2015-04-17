@@ -34,6 +34,16 @@ public class AdminDao {
 			ps.executeUpdate();
 			DBUtil.close(ps);
 			
+			sql = "delete userItem";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			DBUtil.close(ps);
+			
+			sql = "delete event";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			DBUtil.close(ps);
+			
 			// 유저 목록 불러오기
 			sql = "select userNum from gameUser";
 			ps = con.prepareStatement(sql);
@@ -48,12 +58,12 @@ public class AdminDao {
 			int dice = 0;
 			int weapon = 0;
 			
-			sql = "insert into status values(?, ?, ?, ?, 20, 0, 0, ?, 1, ?)";
+			sql = "insert into status values(?, ?, ?, ?, 30, 0, 0, ?, 1, ?)";
 			ps = con.prepareStatement(sql);
 			for(int i : list){
 				ps.setInt(1, i); // 회원번호
 				
-				dice = 275 + rnd.nextInt(51); // 체력 랜덤 생성
+				dice = 280 + rnd.nextInt(51); // 체력 랜덤 생성
 				
 				ps.setInt(2, dice); // 최대체력
 				ps.setInt(3, dice); // 체력
