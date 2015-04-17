@@ -43,10 +43,10 @@
 	<c:if test="${sessionScope.userId ne 'Admin'}">
 		<table border='1'>
 			<tr>
-				<th width="30%">번호</th>
-				<th width="30%">제 목</th>
-				<th width="100%">내 용</th>
-				<th width="100%">날 짜</th>
+				<th width="100px">번호</th>
+				<th width="400px">제 목</th>
+				<th width="700px">내 용</th>
+				<th width="200px">날 짜</th>
 			</tr>
 
 			<c:forEach var="nn" items="${list}">
