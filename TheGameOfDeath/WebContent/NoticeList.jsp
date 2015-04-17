@@ -41,7 +41,7 @@
 
 
 	<c:if test="${sessionScope.userId ne 'Admin'}">
-		<table border='1' class="table">
+		<table border='1'>
 			<tr>
 				<th width="30%">번호</th>
 				<th width="30%">제 목</th>

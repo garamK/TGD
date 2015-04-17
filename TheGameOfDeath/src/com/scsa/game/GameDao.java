@@ -28,7 +28,7 @@ public class GameDao {
 			rs = ps.executeQuery();
 			if(rs.next()){
 				result = new Status(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
-						rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), 
+				                       		rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), 
 						rs.getInt(10), rs.getInt(11), rs.getInt(12), rs.getInt(13));
 			}
 		}finally{
