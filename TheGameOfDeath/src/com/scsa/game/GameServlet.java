@@ -78,7 +78,7 @@ public class GameServlet extends HttpServlet {
     		
     		if(user.getStamina() <= 0){
     			
-    			request.setAttribute("msg", "체력이 부족하다... 더이상 돌아다닐 수 없어...");
+    			request.setAttribute("msg", "행동력이 부족하다... 더이상 돌아다닐 수 없어...");
     			return "GameMain.jsp";
     		}
     		
