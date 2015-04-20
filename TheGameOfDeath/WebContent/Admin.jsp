@@ -13,7 +13,6 @@
 <body>
 <center>
 <h1>관리자 페이지</h1>
-
 <a href="Notice.do?action=LIST"><font size="6">공지목록</font></a>
 <a href="Notice.do?action=INPUT"><font size="6">공지등록</font></a>
 <p>
