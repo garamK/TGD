@@ -13,12 +13,12 @@
 
 <table>
 	<tr>
-	<th width="100">회원번호</th><th width="100">아이디</th><th width="100">닉네임</th><th width="100">참가여부</th><th width="100">강퇴</th>
+	<th width="100">회원번호</th><th width="100">아이디</th><th width="100">닉네임</th><th width="100">강퇴</th>
 	</tr>
 	
 	<c:forEach var="user" items="${list}">	
 	<tr>
-	<td>${user.userNum}</td><td>${user.userId}</td><td>${user.nick}</td><td>${user.play}</td><td><a href="UserList.do?action=DELETE&userId=${user.userId}">강퇴시킬거다</a></td>
+	<td>${user.userNum}</td><td>${user.userId}</td><td>${user.nick}</td><td><a href="UserList.do?action=DELETE&userId=${user.userId}">강퇴시킬거다</a></td>
 	</tr>
 	</c:forEach>
 </table>

@@ -176,7 +176,7 @@ public class NoticeServlet extends HttpServlet {
 			Notice  notice = null;
 			
 			try {
-				notice = dao.search(noticeNum);  //번호줄테니까 공지사항을 달라.
+				notice = dao.search2(noticeNum);  //번호줄테니까 공지사항을 달라.
 			} catch (SQLException e) {
 				e.printStackTrace();
 				request.setAttribute("msg", "수정할 데이터 검색 중 오류가 발생했습니다.");

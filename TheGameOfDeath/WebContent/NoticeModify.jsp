@@ -32,16 +32,16 @@
 	</tr>
 	
 	<tr>
-		<td colspan='2'>
-			<input type = "submit" value = "수정등록" />	
+		<td colspan='2' align="center">
+			<input type = "submit" value = "수정등록" style="background-color:black; border:0; color:white"/>	
 		</td>
 	</tr>
 </table>
 </form>
 
 <a href="Notice.do?action=LIST">공지목록</a>
+<a href="Notice.do?action=DELETE&noticeNum=${notice.noticeNum}">공지삭제</a>
 <a href="Main.jsp">메인페이지</a>
-<a href="Notice.do?action=DELETE&noticeNum=${notice.noticeNum}">공지 삭제</a>
 
 </body>
 </html>
