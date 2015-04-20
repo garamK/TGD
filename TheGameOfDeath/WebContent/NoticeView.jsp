@@ -63,6 +63,7 @@
 	
 	<c:if test="${sessionScope.userId eq 'Admin'}">
 		<a href="Notice.do?action=LIST">공지목록</a>
+		 <a href="Notice.do?action=DELETE&noticeNum=${notice.noticeNum}">공지삭제</a>
 	</c:if>
 		<a href="Main.jsp">메인페이지</a>
 	

@@ -15,7 +15,7 @@
 
 	function popUp(num) {
 		window.open("Notice.do?action=VIEW&noticeNum=" + num, "공지상세보기",
-				"top=200, left=200, width=500, height=150, scrollbar=yes");
+				"top=200, left=200, width=500, height=350, scrollbar=yes channelmode=yes");
 	}
 	
 	function lSubmit() {

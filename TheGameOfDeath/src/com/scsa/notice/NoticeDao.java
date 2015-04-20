@@ -91,6 +91,37 @@ public class NoticeDao {
 		}
 		return list;
 	}
+	
+	
+	//관리자가 수정할 때 쓸거. //업데이트할 때 불려짐 당할거.
+	public Notice search2(int noticeNum) throws SQLException {
+
+		Notice n = null; 
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DBUtil.getConnection();
+			String q = "Select noticeNum, title, content, to_char(ndate, 'yy.mm.dd') nd from Notice where NoticeNum=?";
+			ps = con.prepareStatement(q);
+			ps.setInt(1, noticeNum);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				n = new Notice(rs.getInt(1), rs.getString(2), rs.getString(3).replaceAll("<br>", "\n"),
+						rs.getString(4));
+			}
+		} finally {
+			DBUtil.close(rs);
+			DBUtil.close(ps);
+			DBUtil.close(con);
+		}
+		return n;
+	}
+	
+	
 
 	
 	// 해당하는 애 번호로 찾기 -- 상세보기할 때 필요할 수 있음. //관리자, 회원 용
@@ -153,7 +184,7 @@ public class NoticeDao {
 			con = DBUtil.getConnection();
 			String q = "Update Notice set content=? where noticeNum=?";
 			ps = con.prepareStatement(q);
-			ps.setString(1, content);
+			ps.setString(1, content.replaceAll("\n", "<br>"));
 			ps.setInt(2, noticeNum);
 			rs = ps.executeQuery();
 		} finally {
