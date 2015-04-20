@@ -124,9 +124,9 @@ public class GameDao {
 		}
 	}
 	
-	public Item getItemFromMap(int location) throws SQLException{
+	public ArrayList<Item> getItemFromMap(int location) throws SQLException{
 		
-		Item result = null;
+		ArrayList<Item> list = new ArrayList<Item>();
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -137,8 +137,9 @@ public class GameDao {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, location);
 			rs = ps.executeQuery();
-			if(rs.next()){
-				result = new Item(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
+			while(rs.next()){
+				
+				list.add(new Item(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getInt(5)));
 			}
 		}finally{
 			DBUtil.close(rs);
@@ -146,7 +147,7 @@ public class GameDao {
 			DBUtil.close(con);
 		}
 		
-		return result;
+		return list;
 	}
 	
 	public void setEvent(Event ev) throws SQLException{

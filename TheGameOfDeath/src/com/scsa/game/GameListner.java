@@ -29,22 +29,21 @@ public class GameListner implements ServletContextListener {
     	
     	System.out.println("서버 시작");
     	
-		ScheduledJob job = new ScheduledJob();
+		ScheduledJob1 job = new ScheduledJob1();
 		
-		Timer jobScheduler = new Timer();
+		Timer jobScheduler1 = new Timer();
 		
-		jobScheduler.scheduleAtFixedRate(job, 1000, 1000*60*10);
+		jobScheduler1.scheduleAtFixedRate(job, 1000, 1000*60*10);
 		
     }
 	
-    class ScheduledJob extends TimerTask {
+    class ScheduledJob1 extends TimerTask {
 
     	public void run() {
     		
     		Calendar cal = Calendar.getInstance();
     		cal.add (Calendar.MINUTE, 10);
     		    		
-            System.out.println(cal.getTimeInMillis());
     		sc.setAttribute("time", cal.getTimeInMillis());
     		
     		GameDao dao = new GameDao();
@@ -54,6 +53,14 @@ public class GameListner implements ServletContextListener {
     		} catch (SQLException e) {
     			e.printStackTrace();
     		}
+    	}
+    }
+    
+    class ScheduledJob2 extends TimerTask {
+
+    	public void run() {
+    		
+    		
     	}
     }
 }

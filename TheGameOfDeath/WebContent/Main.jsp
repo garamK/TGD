@@ -28,11 +28,14 @@
 		var ss = document.getElementById("ss");
 		
 		if(min <= 0 && sec <= 0){
-			location.reload();
+			sm.innerHTML = ""
+			ss.innerHTML = "충전완료";
+		}
+		else{
+			sm.innerHTML = min + "분 ";
+			ss.innerHTML = sec + "초";
 		}
 		
-		sm.innerHTML = min + "분 ";
-		ss.innerHTML = sec + "초";
 	}
 	
 	function startTimer() { 

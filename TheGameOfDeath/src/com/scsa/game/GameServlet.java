@@ -316,13 +316,17 @@ public class GameServlet extends HttpServlet {
 				Item item = null;
 				
 				//지역 아이템 정보 로드
-				item = dao.getItemFromMap(user.getLocation());
+				ArrayList<Item> itemList = dao.getItemFromMap(user.getLocation());
 				
-				if(item != null){
+				dice = ran.nextInt(itemList.size());
+				
+				item = itemList.get(dice);
+				
+				if(itemList.size() != 0){
 					int itemChance = item.getChance();
 					dice = ran.nextInt(100)+1;
 					
-					if(dice < itemChance + 10){ // 아이템이 나왔음
+					if(dice < itemChance + 3){ // 아이템이 나왔음
 						
 						if(item.getiType() == 0){ // 무기가 나온 경우
 							if(user.getItemNum()<item.getItemNum()){
@@ -344,7 +348,7 @@ public class GameServlet extends HttpServlet {
 							
 							request.setAttribute("msg", "음식을 발견했습니다.");
 							
-							ArrayList<Item> itemList = (ArrayList<Item>) session.getAttribute("itemList");
+							itemList = (ArrayList<Item>) session.getAttribute("itemList");
 							boolean itemExist = false;
 							for(Item it : itemList){
 								if(it.getItemNum() == item.getItemNum()){
