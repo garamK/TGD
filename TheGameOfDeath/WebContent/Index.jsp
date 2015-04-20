@@ -69,7 +69,7 @@
 					<tr>
 						<td><h6>비밀번호</h6></td>
 						<td><input type="password" id="pass" name="pass" class="form-control"/></td>
-						<td><a href="javascript:check()"	class="btn btn-default">회원가입</a> </td>
+						<td><a href="javascript:check()" class="btn btn-default">회원가입</a> </td>
 					</tr>
 				</table>
 			</form>

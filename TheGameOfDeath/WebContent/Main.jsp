@@ -49,12 +49,24 @@
 </script>
 <body>
 <input type="hidden" id="ftime" value="${time}"/>
+
+<c:if test="${empty nextPage}">
+<%
+	request.getRequestDispatcher("Notice.do").forward(request, response);
+%>
+</c:if>
+<c:if test="${empty sessionScope.userId}">
+<%
+	request.setAttribute("msg", "세션이 만료되었습니다. 다시 로그인해주세요");
+	request.getRequestDispatcher("Error.jsp").forward(request, response);
+%>
+</c:if>
+
 <center>
 	<table width="75%" height="100%">
 
 		<tr height="50px">
 			<td>
-			
 				<nav class="navbar navbar-inverse">
 				  <div class="container-fluid">
 				    <div class="navbar-header">
@@ -78,8 +90,13 @@
 		</tr>
 		<tr>
 			<td>
+				<c:if test="${not empty number1}">
+						<table align="left">
+							<tr><td>[알림] ${number1.nick} 유저는 현재 ${number1.location}구역에 있습니다. </td></tr>
+						</table>
+				</c:if>
 				<table align="right">
-					<tr><th>행동력 </th><td align="center" width='100px'> ${sessionScope.userInfo.stamina}</td></tr>
+					<tr><th width='80px'>행동력 </th><td align="center" width='100px'> ${sessionScope.userInfo.stamina}</td></tr>
 					<tr><th>남은 시간</th><td align="center"><span id="sm"></span><span id="ss"></span></td></tr>
 				</table>
 			</td>

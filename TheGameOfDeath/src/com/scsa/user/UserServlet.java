@@ -32,9 +32,13 @@ public class UserServlet extends HttpServlet {
 		switch(action){
 		case "REGISTER" : nextPage = register(request, response); break;
 		case "LOGIN":
-			login(request, response);
-			response.sendRedirect(nextPage);
-			return;
+			nextPage = login(request, response);
+			if(nextPage.equals("Game.do")){
+				response.sendRedirect(nextPage);
+				return;
+			}
+			break;
+			
 		case "LOGOUT": 
 			logout(request); 
 			request.getRequestDispatcher("Notice.do").forward(request, response);
@@ -95,6 +99,7 @@ public class UserServlet extends HttpServlet {
 				System.out.println(itemList); //디
 			}
 			else{
+				System.out.println("로그인 실패");
 				request.setAttribute("msg", "아이디 또는 비밀번호가 잘못되었습니다.");
 				return "Error.jsp";
 			}
