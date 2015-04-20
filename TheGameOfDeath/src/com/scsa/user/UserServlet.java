@@ -27,11 +27,14 @@ public class UserServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String action = request.getParameter("action");
 		System.out.println(action);
-		String nextPage = "";
+		String nextPage = "Game.do";
 		
 		switch(action){
 		case "REGISTER" : nextPage = register(request, response); break;
-		case "LOGIN": nextPage = login(request, response); break;
+		case "LOGIN":
+			login(request, response);
+			response.sendRedirect(nextPage);
+			return;
 		case "LOGOUT": 
 			logout(request); 
 			request.getRequestDispatcher("Notice.do").forward(request, response);

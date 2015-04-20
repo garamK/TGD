@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.scsa.db.DBUtil;
 import com.scsa.user.Status;
@@ -310,10 +311,15 @@ public class GameDao {
 		PreparedStatement ps = null;
 		
 		try{
+			
+			Random rnd = new Random();
+			int location = rnd.nextInt(16)+1;
 			con = DBUtil.getConnection();
-			String sql = "update status set death = death+1, stamina = 100, health = 210 where userNum = ?";
+			String sql = "update status set death = death+1, stamina = 10, health = 210, location = ?"
+					+ " where userNum = ?";
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, userNum);
+			ps.setInt(1, location);
+			ps.setInt(2, userNum);
 			
 			ps.executeUpdate();
 			
@@ -435,16 +441,23 @@ public class GameDao {
 		
 		try{
 			con = DBUtil.getConnection();
-			String sql = "update status set stamina = stamina + 100 ";
+			String sql = "update status set stamina = stamina + 10 where stamina < 21";
 			ps = con.prepareStatement(sql);
 			ps.executeUpdate();
-			//where stamina < 20
+			
+			DBUtil.close(ps);
+			
+			sql = "update status set stamina = 30 where stamina > 20";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
 			
 			DBUtil.close(ps);
 			
 			sql = "update status set health = health - 1 where health > 2";
 			ps = con.prepareStatement(sql);
 			ps.executeUpdate();
+			
+			System.out.println("갱신");
 			
 		}finally{
 			DBUtil.close(ps);

@@ -12,18 +12,40 @@
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
 	function getTime(){
 		
-		var fr = document.getElementById("ftime");
-		var d = new Date();
-		d.fromFormattedString(fr.value, "H:m:s");
+		var next = document.getElementById("ftime").value;
+				
+		var cur = new Date().getTime();
 		
-		var cur = new Date();
+		var gap = (next - cur)/1000;
 		
-		alert(cur-d);
+		var min = Math.floor(gap/60);
+		var sec = Math.floor(gap%60);
+		
+		var sm = document.getElementById("sm");
+		var ss = document.getElementById("ss");
+		
+		if(min <= 0 && sec <= 0){
+			location.reload();
+		}
+		
+		sm.innerHTML = min + "분 ";
+		ss.innerHTML = sec + "초";
 	}
+	
+	function startTimer() { 
+		if (document.getElementById("ftime")!=null) {
+			timerID = setInterval("getTime()", 1000);
+		}
+	}
+	
+	window.onload = startTimer;
+	
 </script>
 <body>
+<input type="hidden" id="ftime" value="${time}"/>
 <center>
 	<table width="75%" height="100%">
 
@@ -55,7 +77,7 @@
 			<td>
 				<table align="right">
 					<tr><th>행동력 </th><td align="center" width='100px'> ${sessionScope.userInfo.stamina}</td></tr>
-					<tr><th>다음충전시간</th><td align="center">${time}</td></tr>
+					<tr><th>남은 시간</th><td align="center"><span id="sm"></span><span id="ss"></span></td></tr>
 				</table>
 			</td>
 		</tr>

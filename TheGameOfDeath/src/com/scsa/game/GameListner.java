@@ -33,7 +33,7 @@ public class GameListner implements ServletContextListener {
 		
 		Timer jobScheduler = new Timer();
 		
-		jobScheduler.scheduleAtFixedRate(job, 1000, 1000*60*3);
+		jobScheduler.scheduleAtFixedRate(job, 1000, 1000*60*10);
 		
     }
 	
@@ -42,13 +42,10 @@ public class GameListner implements ServletContextListener {
     	public void run() {
     		
     		Calendar cal = Calendar.getInstance();
-    		cal.add (Calendar.MINUTE, 3);
-            int hour = cal.get(Calendar.HOUR_OF_DAY);
-            int min = cal.get(Calendar.MINUTE);
-            int sec = cal.get(Calendar.SECOND);
-    		System.out.println(hour+":"+min+":"+sec);
-    		
-    		sc.setAttribute("time", hour+":"+min+":"+sec);
+    		cal.add (Calendar.MINUTE, 10);
+    		    		
+            System.out.println(cal.getTimeInMillis());
+    		sc.setAttribute("time", cal.getTimeInMillis());
     		
     		GameDao dao = new GameDao();
     		
