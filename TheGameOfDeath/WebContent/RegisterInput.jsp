@@ -5,16 +5,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="http://bootswatch.com/assets/css/bootswatch.min.css">
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
-	<h1>회원가입</h1>
-	<p>
+	<div style="margin-top: 10%; margin-left: 15%; margin-right: 15%" class="jumbotron">
+	<h2 align=center>회원가입</h2>
+	<br>
+	<br>
 	<form action="User.do?action=REGISTER" method="post">
-		<table>
+		
+		
+		<table align="center" border="1">
+		<tr>
+		<td>
+			<table align="center"  border='1'>
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" name="userId" id="userId" /></td>
+				<td><input type="text" name="userId" id="userId"/></td>
 			</tr>
 			<tr>
 				<th>닉네임</th>
@@ -28,33 +40,43 @@
 				<th>비밀번호 확인</th>
 				<td><input type="password" name="pass2" id="pass2" /></td>
 			</tr>
-
-			<tr>
-
-			</tr>
-			
-			<tr>
-			<th>캐릭터선택</th>
-			</tr>
-			<tr>
-				<td><img src="images/ch1.png" /><img src="images/ch2.png" /><img
-					src="images/ch3.png" /><img src="images/ch4.png" /><img
-					src="images/ch5.png" /><img src="images/ch6.png" /></td>
-			<tr>
-			<tr>
-				<td colspan="2"><input type="radio" name="image" value="ch1.png" />캐릭터1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <input	type="radio" name="image" value="ch2.png" />캐릭터2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <input	type="radio" name="image" value="ch3.png" />캐릭터3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <input	type="radio" name="image" value="ch4.png" />캐릭터4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <input type="radio" name="image" value="ch5.png" />캐릭터5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				 <input type="radio" name="image" value="ch6.png" />캐릭터6</td>
-			</tr>
-			
-			<tr>
-				<td colspan="2"><input type="submit" value="가입" /> <input
-					type="reset" value="취소" /></td>
-			</tr>
+			</table>
+		</td>
+		<td width="600" aligh="right">
+		<div style="margin-left: 20%;"><h2>The Game of Death</h2></div>
+		</td>
+		</tr>
 		</table>
+		
+			
+		<table align=center border=1>	
+			<tr><th colspan=6 align=center><center>캐릭터를 선택해주세요</center></th></tr>
+			<tr>
+				<th><img src="images/ch1.png" /></th>
+				<th><img src="images/ch2.png" /></th>
+				<th><img src="images/ch3.png" /></th>
+				<th><img src="images/ch4.png" /></th>
+				<th><img src="images/ch5.png" /></th>
+				<th><img src="images/ch6.png" /></th>
+			</tr>
+			<tr>
+				 <td><input type="radio" name="image" value="ch1.png" />캐릭터1</td>
+				 <td><input	type="radio" name="image" value="ch2.png" />캐릭터2</td> 
+				 <td><input	type="radio" name="image" value="ch3.png" />캐릭터3</td>
+				 <td><input	type="radio" name="image" value="ch4.png" />캐릭터4</td>
+				 <td><input type="radio" name="image" value="ch5.png" />캐릭터5</td>
+				 <td><input type="radio" name="image" value="ch6.png" />캐릭터6</td>
+			</tr>
+			
+		</table>
+		<br>
+		<br>
+			<center>
+				<td colspan="6"><input type="submit" value="가입" style="background-color:black; border:0; color:white" /> <input
+					type="reset" value="취소" style="background-color:black; border:0; color:white"/></td>
+			</center>
+	
 	</form>
+</div>	
 </body>
 </html>
