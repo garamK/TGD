@@ -42,7 +42,10 @@ function registerCheck(){
 		return;	
 	}	
 
-	document.getElementById("ff").submit();
+	if(userId.value.length > 0 && nick.value.length > 0 && pass.value.length > 0 && pass2.value ==pass.value){
+		alert("아나")
+		document.getElementById("ff").submit();
+	}
 	
 }
 
@@ -82,9 +85,8 @@ function registerCheck(){
 			</td>
 		</tr>
 		</table>
-		
 			
-		<table align=center border=1 >	
+		<table align=center border=1 >
 			<tr><th colspan=6 align=center><center>캐릭터를 선택해주세요</center></th></tr>
 			<tr>
 				<th><img src="images/ch1.png" /></th>
@@ -104,7 +106,7 @@ function registerCheck(){
 			</tr>
 			<tr align="center">
 				<td colspan="6">
-					<input type="submit" value="가입" onclick="registerCheck()" style="background-color:black; border:0; color:white" /> 
+					<input type="button" value="가입" onclick="registerCheck()" style="background-color:black; border:0; color:white" /> 
 					<input type="reset" value="취소" style="background-color:black; border:0; color:white"/>
 				</td>
 			</tr>

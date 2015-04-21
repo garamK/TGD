@@ -46,17 +46,22 @@
 					<th>제 목</th>
 					<th>날 짜</th>
 				</tr>
-			
-				<c:forEach var="nn" items="${list}">
-					<tr>
-						<td>${nn.noticeNum}</td>
-						<td><a href="javascript:popUp('${nn.noticeNum}')">${nn.title}</a></td>
-						<td>${nn.ndate}</td>
-					</tr>
+				<c:set var="flag" value="true"/>
+				<c:forEach var="nn" items="${list}" varStatus="i">
+					<c:if test="${flag}">
+						<tr>
+							<td>${nn.noticeNum}</td>
+							<td><a href="javascript:popUp('${nn.noticeNum}')">${nn.title}</a></td>
+							<td>${nn.ndate}</td>
+						</tr>
+					</c:if>
+					<c:if test="${i.count == 5}"> 
+						<c:set var="flag" value="false"/> 
+					</c:if> 
 				</c:forEach>
 			</table>
 		</td>
-		<td width="100px">
+		<td width="70px">
 		</td>
 		<td>
 			<form action="User.do?action=LOGIN" method="post" id="lForm">
