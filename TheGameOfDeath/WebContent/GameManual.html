@@ -2,42 +2,43 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메뉴얼</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="http://bootswatch.com/assets/css/bootswatch.min.css">
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
-
+<div style="color: #FFFFFF;">
 <h1>게임메뉴얼</h1>
 
 <br>
 
 1. 체력<br>
-10분 당 1씩, 전투 시 받은 데미지만큼 감소한다.<br>
-식량 아이템 사용시 증가한다.<br><br>
+10분 당 1씩감소한다. 또한 전투 시 받은 데미지만큼 감소한다.<br>
+식량 아이템 사용시 회복 된다.<br><br>
 
 2. 공격력<br>
 보유한 무기 아이템에 따라 수치가 달라진다.<br>
 짱돌 < 새총 < 사시미 < 도끼 < 전기톱(max)<br><br>
 
 3. 행동력<br>
-User가 게임에 참여하는 행위를 의미한다.<br>
-만약 행동력이 0이 되면, User는 체력이나 공격력의 수치와는 무관하게 게임에 참여할 수 없게 된다.<br>
-행동력은 10분 당 1씩 증가하며, User의 최대 행동력 수치는 20이다.<br>
-User가 게임에 참여하여 탐색 혹은 이동의 행동을 취할 때  그 값은 감소한다.<br>
-탐색 시, 1씩 감소하며, 이동 시 2씩 감소한다.<br><br>
+User가 행동할 수 있는 횟수를 의미한다.<br>
+만약 행동력이 0이 되면, User는 체력이나 공격력의 수치와는 무관하게 다른 행동을 할 수 없다.<br>
+행동력은 10분 당 10씩 증가하며, User의 최대 행동력 수치는 30이다.<br>
+User가 게임에서 탐색 혹은 이동할 때 소모된다.<br>
+탐색 시 1씩 사용되며, 이동 시 2씩 사용된다.<br><br>
 
 4. 아이템<br>
 아이템에는 식량과 무기 두 종류가 있으며, User는 아이템 획득 및 사용이 가능하다.<br>
-'탐색'을 통해서 아이템을 획득할 수 있다.<br><br>
+'탐색'을 통해서 아이템을 획득할 수 있다.<br>
+무기의 경우에는 더 좋은 아이템을 발견한 경우 자동 장착되며,<br>
+식량의 경우 인벤토리에 보관되고 이후 사용해 체력을 회복할 수 있다.<br><br>
 
 5. 이동<br>
 한 Zone에서 다른 Zone으로 이동을 의미한다.<br>
-User 이동 시, 행동력이 2포인트 감소한다.<br><br>
+User 이동 시, 행동력이 2포인트 감소한다.<br>
+한 번에 이동 가능한 범위는 상하좌우 최대 4 영역으로 제한된다.<br><br>
 
 6. 탐색<br>
 하나의 Zone 안에서 시행한다.<br>
@@ -45,7 +46,7 @@ User 탐색 시 행동력이 1포인트 감소한다.<br>
 User가 탐색을 선택할 경우 다음의 3가지 상황 중 하나의 상황이 주어진다.<br><br>
 
 1) 전투<br>
-전투 상황이 주어질 경우, User는 전투에 참여할지 회피를 할지 결정할 수 있다.<br>
+전투 상황이 주어질 경우, User는 사전에 전투 참여 혹은 회피를 결정할 수 있다.<br>
 2) 아이템 획득<br>
 각 Zone마다 아이템이 숨겨져 있으며, User는 탐색 중 식량이나 무기 아이템을 획득할 수 있다.<br> 
 3) 아무런 사건도 발생하지 않는다.<br><br>
@@ -54,7 +55,8 @@ User가 탐색을 선택할 경우 다음의 3가지 상황 중 하나의 상황
 7. 전투 혹은 회피<br>
 탐색 시, User가 전투상황을 선택한 경우이다.<br>
 User1과 User2가 존재한다.<br>
-User1은 능동, User2는 수동적 입장이다.<br><br>
+User1은 탐색을 실행한 User로 다른 User를 발견한 상황이며, <br>
+User2는 같은 지역에 있는 다른 User로 발견을 당한 입장이다.<br><br>
 <table border="1">
 <tr>
 	<th>User1/User2</th>
@@ -64,15 +66,17 @@ User1은 능동, User2는 수동적 입장이다.<br><br>
 <tr>
 	<th>User1전투선택</th>
 	<td>
-	일대일 전투 상황이며, User1과 User2는 각각 3번씩 공격을 주고 받을 수 있다.<br>
-	데미지를 입으면 체력이 감소한다.<br>
-	전투 시 User가 사망할 수 있다.<br>
-	User1이 전투에서 승리했다고 가정할 경우,<br>
-	User1은 User2의 아이템을 약탈할 수 있다.<br>
-	무기 아이템을 우선 획득하며, User2가 무기아이템을 보유하고 있지 않을 시,<br> 
-	User2가 보유한 최고수준의 식량을 약탈할 수 있다.<br>
+		일대일 전투 상황이며, User1과 User2는 각각 3번씩 공격을 주고 받을 수 있다.<br>
+		데미지를 입으면 체력이 감소한다.<br>
+		전투 시 User가 사망할 수 있다.<br>
+		승리한 User는 승리 점수를 획득한다.<br>
+		패배한 User는 생존 점수를 잃으며 체력 200과 행동력 10을 보유한 상태로 부활하게 된다.<br>
 	</td>
-	<td>User2의 체력 다소 감소</td>
+	<td>
+		50%의 확률로 User2가 도망가거나 공격을 받는다.<br>
+		도망에 성공할 경우 아무런 이벤트가 발생하지 않는다. <br>
+		도망에 실패할 경우 User2는 일방적으로 1회의 공격을 받게 된다.
+	</td>
 </tr>
 <tr>
 	<th>User1회피선택</th>
@@ -82,7 +86,7 @@ User1은 능동, User2는 수동적 입장이다.<br><br>
 </table>
 <br>
 <p>
-
+</div>
 <a href="Main.jsp"><h3><span style="color:red">메인화면</span></h3></a>
 
 </body>

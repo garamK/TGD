@@ -26,6 +26,11 @@ public class GameServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	
+    	if(session.getAttribute("userNum") == null){
+    		request.setAttribute("nextPage", nextPage);
+    		request.getRequestDispatcher("Main.jsp").forward(request, response);
+    	}
+    	
     	int userNum = (int)session.getAttribute("userNum");
 		
 		try {
@@ -267,7 +272,7 @@ public class GameServlet extends HttpServlet {
 								dice = ran.nextInt(10);
 								if(dice<3){
 									damage = 0;
-									msg = countUser.getNick() +"은(는) " + user.getNick()+"의 공격을 피하고 도망갔다.";
+									msg = countUser.getNick() +"은(는) " + user.getNick()+"의 공격을 피했다.";
 								}
 								else{
 									msg = user.getNick() +"은(는) " + countUser.getNick()+"에게 " + damage +
@@ -315,6 +320,10 @@ public class GameServlet extends HttpServlet {
 				
 				Item item = null;
 				
+				int dec = user.getDecision();
+				
+				int bonus = dec == 1 ? 15 : -5;
+				
 				//지역 아이템 정보 로드
 				ArrayList<Item> itemList = dao.getItemFromMap(user.getLocation());
 				
@@ -326,7 +335,7 @@ public class GameServlet extends HttpServlet {
 					int itemChance = item.getChance();
 					dice = ran.nextInt(100)+1;
 					
-					if(dice < itemChance + 3){ // 아이템이 나왔음
+					if(dice < itemChance + bonus){ // 아이템이 나왔음
 						
 						if(item.getiType() == 0){ // 무기가 나온 경우
 							if(user.getItemNum()<item.getItemNum()){

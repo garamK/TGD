@@ -98,6 +98,24 @@ public class AdminDao {
 			con = DBUtil.getConnection();
 			String sql = "update gameUser set play = 0";
 			ps = con.prepareStatement(sql);
+			DBUtil.close(ps);
+			
+			//2. 기존 유저의 status 삭제
+			
+			sql = "delete status";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			DBUtil.close(ps);
+			
+			sql = "delete userItem";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			DBUtil.close(ps);
+			
+			sql = "delete event";
+			ps = con.prepareStatement(sql);
+			ps.executeUpdate();
+			DBUtil.close(ps);
 			
 		}finally{
 			DBUtil.close(ps);

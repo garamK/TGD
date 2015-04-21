@@ -43,7 +43,6 @@ function registerCheck(){
 	}	
 
 	if(userId.value.length > 0 && nick.value.length > 0 && pass.value.length > 0 && pass2.value ==pass.value){
-		alert("아나")
 		document.getElementById("ff").submit();
 	}
 	
