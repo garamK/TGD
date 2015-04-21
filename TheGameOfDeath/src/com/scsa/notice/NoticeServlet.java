@@ -104,6 +104,7 @@ public class NoticeServlet extends HttpServlet {
 			try {
 				list = dao.search();
 			} catch (SQLException e) {
+				
 				e.printStackTrace();
 				request.setAttribute("msg", "검색중 오류가 발생했습니다.");
 				return "Error.jsp";
@@ -157,7 +158,7 @@ public class NoticeServlet extends HttpServlet {
 				notice = dao.search(noticeNum);  //번호를 통해->공지사항
 			} catch (SQLException e) {
 				e.printStackTrace();
-				request.setAttribute("msg", "검색중 오류가 발생했습니다.");
+				request.setAttribute("msg", "오류가 발생했습니다.");
 				return "Error.jsp";
 			}
 			
