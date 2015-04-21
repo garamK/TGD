@@ -31,8 +31,6 @@ public class GameServlet extends HttpServlet {
     		request.getRequestDispatcher("Main.jsp").forward(request, response);
     	}
     	
-    	int userNum = (int)session.getAttribute("userNum");
-		
 		try {
 			Status user = dao.getUser((int)session.getAttribute("userNum"));
 			
@@ -327,11 +325,12 @@ public class GameServlet extends HttpServlet {
 				//지역 아이템 정보 로드
 				ArrayList<Item> itemList = dao.getItemFromMap(user.getLocation());
 				
-				dice = ran.nextInt(itemList.size());
-				
-				item = itemList.get(dice);
-				
 				if(itemList.size() != 0){
+					
+					dice = ran.nextInt(itemList.size());
+					
+					item = itemList.get(dice);
+					
 					int itemChance = item.getChance();
 					dice = ran.nextInt(100)+1;
 					
