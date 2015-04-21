@@ -11,7 +11,12 @@
 </head>
 
 <body>
-<h1>${msg}</h1>
-<a href="Main.jsp">메인페이지</a>
+
+<div style="margin-top: 10%; margin-left: 15%; margin-right: 15%" class="jumbotron">
+
+	<h2>에러가 발생했습니다!</h2><p>
+	<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${msg}</h3><br><br><br>
+	<div align="right"><a href="Main.jsp" class="btn btn-default">메인페이지</a>&nbsp;&nbsp;&nbsp;</div>
+</div>
 </body>
 </html>
