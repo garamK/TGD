@@ -66,6 +66,7 @@
 				        <li><a href="Notice.do?action=LIST">공지사항</a></li>
 				        <li><a href="Map.do">맵 정보</a></li>
 				        <li><a href="Survivor.do">랭킹</a></li>
+				        <li><a href="GameManual.html">게임설명</a></li>
 				      </ul>
 				      <ul class="nav navbar-nav navbar-right">
 				        <li><a href="User.do?action=LOGOUT">LogOut</a></li>

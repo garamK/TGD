@@ -61,7 +61,7 @@ public class UserServlet extends HttpServlet {
 			dao.save(gu);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "등록 중 문제가 발생하였습니다.");
+			request.setAttribute("msg", "회원가입 중 문제가 발생하였습니다.");
 			return "Error.jsp";
 		}
 		
@@ -100,7 +100,7 @@ public class UserServlet extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "로그인 중 에러가 발생하였습니다.");
+			request.setAttribute("msg", "로그인 중 문제가 발생하였습니다.");
 			return "Error.jsp";
 		}
 		
